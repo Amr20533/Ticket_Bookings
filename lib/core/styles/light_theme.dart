@@ -12,16 +12,20 @@ ThemeData get lightTheme {
           fontSize: 22,fontWeight:FontWeight.w600
         ),
         titleMedium: TextStyle(
-          color: kLightThemeTextColor,
-          fontSize: 22,fontWeight:FontWeight.w600
+          color: Colors.black,
+          fontSize: 16,fontWeight:FontWeight.w600
         ),
         titleSmall: TextStyle(
-          color: kLightThemeTextColor,
-          fontSize: 18,fontWeight:FontWeight.w400
+          color: Colors.grey,
+          fontSize: 14,fontWeight:FontWeight.w400
         ),
         headlineSmall: TextStyle(
           color: kLightThemeTextColor,
-          fontSize: 22,fontWeight:FontWeight.w600
+          fontSize: 26,fontWeight:FontWeight.bold
+        ),
+        headlineLarge: TextStyle(
+          color: Colors.black,
+          fontSize: 38,fontWeight:FontWeight.bold
         ),
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(

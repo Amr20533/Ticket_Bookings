@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:ticket_booking_app/core/localizarion/app_localization.dart';
+import 'package:ticket_booking_app/core/localization/app_localization.dart';
 import 'package:ticket_booking_app/layout/mainView.dart';
 import 'package:ticket_booking_app/providers/home_provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:ticket_booking_app/providers/search_notifier.dart';
 
 void main() {
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => HomeNotifier()),
+        ChangeNotifierProvider(create: (context) => SearchNotifier()),
       ],
       child: const MyApp(),
     ),
