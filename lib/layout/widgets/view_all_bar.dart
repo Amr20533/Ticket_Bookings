@@ -16,15 +16,11 @@ class ViewAllBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(title, style:Theme.of(context).textTheme.headlineSmall),
-              InkWell(onTap: onTap, child: Text(AppLocalizations.of(context).translate('all'), style:Theme.of(context).textTheme.titleMedium!.copyWith(color: kPrimaryColor))),
+          Text(title, style:Theme.of(context).textTheme.headlineSmall),
+          InkWell(onTap: onTap, child: Text(AppLocalizations.of(context).translate('all'), style:Theme.of(context).textTheme.titleMedium!.copyWith(color: kPrimaryColor))),
 
-            ],
-          ),
         ],
       ),
     );

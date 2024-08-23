@@ -50,6 +50,20 @@
   "acc": "Delete Account",
   "pass": "Password Manager",
   "help": "Help & Support",
-  "about": "About App"
+  "about": "About App",
+
+  "ovr": "Overview",
+  "phs": "Photos",
+  "e-cln": "Enhanced Clean",
+  "cln-des": "This host committed to Airbnb clone 5-step enhanced cleaning process.",
+  "grt-loc": "Great location",
+  "loc-des": "95% of recent guests give the location a 5-star rating.",
+  "chk-exp": "Great check-in-experience",
+  "chk-exp-des": "90% of recent guests gave the check-in process 5-star rating.",
+  "cnl": "Free cancellation until 2:00 PM on 8 May",
+  "ngt": "night",
+  "slc-dte": "Select Date",
+  "rvs": "Reviews",
+  "slc-gst": "Select Guest"
 
 }
