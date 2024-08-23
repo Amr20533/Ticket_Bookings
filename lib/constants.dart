@@ -9,6 +9,7 @@ const Color kBackgroundColor = Color(0xFFeeedf2);
 const Color kOrangeColor = Color(0xFF526799);
 const Color kLightThemeTextColor = Color(0xFF3b3b3b);
 const Color kUpperBoxColor = Color(0xFF526799);
+const Color kLightIconColor = Color(0xFF67778E);
 const Color kBottomBoxColor = Color(0xFFF37B67);
 const Color kTitleColor = Color(0xFFd2bdb6);
 const Color kButtonColor = Color(0xD91130CE);

@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:ticket_booking_app/constants.dart';
 import 'package:ticket_booking_app/core/class/app_layout.dart';
 import 'package:ticket_booking_app/core/localization/app_localization.dart';
-import 'package:ticket_booking_app/providers/home_provider.dart';
+import 'package:ticket_booking_app/providers/language_notifier.dart';
 
 class CustomAwardCard extends StatelessWidget {
   const CustomAwardCard({
@@ -19,8 +19,8 @@ class CustomAwardCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final homeNotifier = Provider.of<HomeNotifier>(context);
-    bool isRTL = homeNotifier.locale.languageCode.toLowerCase() == 'ar';
+    final langNotifier = Provider.of<LanguageNotifier>(context);
+    bool isRTL = langNotifier.locale.languageCode.toLowerCase() == 'ar';
     return Container(
       width: _width,height: _height * 0.12,
       margin: EdgeInsets.symmetric(vertical:_height * 0.03, horizontal:_width * 0.04),

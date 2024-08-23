@@ -28,6 +28,14 @@ ThemeData get lightTheme {
           fontSize: 38,fontWeight:FontWeight.bold
         ),
       ),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: kBackgroundColor,
+        elevation: 0,
+        iconTheme: IconThemeData(
+          size: 20,
+          color: Colors.black
+        )
+      ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           selectedIconTheme: IconThemeData(
             color: Colors.blueGrey,

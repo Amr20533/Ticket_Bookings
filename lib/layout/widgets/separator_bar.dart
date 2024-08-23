@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ticket_booking_app/constants.dart';
 import 'package:ticket_booking_app/providers/home_provider.dart';
+import 'package:ticket_booking_app/providers/language_notifier.dart';
 
 class SeparatorBar extends StatelessWidget {
   const SeparatorBar({
@@ -10,8 +11,8 @@ class SeparatorBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final homeNotifier = Provider.of<HomeNotifier>(context);
-    bool isRTL = homeNotifier.locale.languageCode.toLowerCase() == 'ar';
+    final langNotifier = Provider.of<LanguageNotifier>(context);
+    bool isRTL = langNotifier.locale.languageCode.toLowerCase() == 'ar';
 
     return Container(
       color: kBottomBoxColor,

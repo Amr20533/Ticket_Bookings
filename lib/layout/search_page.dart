@@ -7,7 +7,7 @@ import 'package:ticket_booking_app/core/localization/app_localization.dart';
 import 'package:ticket_booking_app/layout/widgets/search/custom_card.dart';
 import 'package:ticket_booking_app/layout/widgets/search/custom_filter_box.dart';
 import 'package:ticket_booking_app/layout/widgets/view_all_bar.dart';
-import 'package:ticket_booking_app/providers/home_provider.dart';
+import 'package:ticket_booking_app/providers/language_notifier.dart';
 import 'package:ticket_booking_app/providers/search_notifier.dart';
 
 class SearchPage extends StatelessWidget {
@@ -18,8 +18,8 @@ class SearchPage extends StatelessWidget {
     double _width = AppLayout.getScreenWidth(context);
     double _height = AppLayout.getScreenHeight(context);
     final search = Provider.of<SearchNotifier>(context);
-    final homeNotifier = Provider.of<HomeNotifier>(context);
-    bool isRTL = homeNotifier.locale.languageCode.toLowerCase() == 'ar';
+    final langNotifier = Provider.of<LanguageNotifier>(context);
+    bool isRTL = langNotifier.locale.languageCode.toLowerCase() == 'ar';
 
     return ListView(
       children: [

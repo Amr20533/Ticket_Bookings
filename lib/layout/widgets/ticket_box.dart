@@ -7,7 +7,7 @@ import 'package:ticket_booking_app/core/class/format_helper.dart';
 import 'package:ticket_booking_app/core/localization/app_localization.dart';
 import 'package:ticket_booking_app/layout/widgets/thick_container.dart';
 import 'package:ticket_booking_app/layout/widgets/separator_bar.dart';
-import 'package:ticket_booking_app/providers/home_provider.dart';
+import 'package:ticket_booking_app/providers/language_notifier.dart';
 
 
 class TicketBox extends StatelessWidget {
@@ -17,8 +17,8 @@ class TicketBox extends StatelessWidget {
   Widget build(BuildContext context) {
     double _width = AppLayout.getSize(context).width;
     double _height = AppLayout.getSize(context).height;
-    final homeNotifier = Provider.of<HomeNotifier>(context);
-    bool isRTL = homeNotifier.locale.languageCode.toLowerCase() == 'ar';
+    final langNotifier = Provider.of<LanguageNotifier>(context);
+    bool isRTL = langNotifier.locale.languageCode.toLowerCase() == 'ar';
 
     return Container(
       width: AppLayout.getSize(context).width * 0.82,
@@ -37,7 +37,7 @@ class TicketBox extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text(ticket['from']['code'], style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 16)),
+                    Text('pla', style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 16)),
                     Expanded(child: Container()),
                     const ThickContainer(),
                     Expanded(child: Stack(
@@ -61,7 +61,7 @@ class TicketBox extends StatelessWidget {
                     const ThickContainer(),
                     Expanded(child: Container()),
 
-                    Text(ticket['to']['code'], style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 16),),
+                    Text('cdn', style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 16),),
 
                   ],
                 ),
@@ -69,10 +69,10 @@ class TicketBox extends StatelessWidget {
                 Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(width: 100,
-                        child: Text(ticket['from']['name'], style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white),)),
-                    Text(ticket['flying-time'], style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white),),
+                        child: Text(ticket['from'], style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white),)),
+                    Text(ticket['flyingTime'], style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white),),
                     SizedBox(width: 100,
-                        child: Text(ticket['to']['name'], style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white),textAlign: TextAlign.end,)),
+                        child: Text(ticket['to'], style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white),textAlign: TextAlign.end,)),
 
 
                   ],
@@ -115,10 +115,10 @@ class TicketBox extends StatelessWidget {
                         child: Text(FormatHelper().getCurrentDate(context), style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 16))),
                     const Spacer(),
                     SizedBox(width: 100,
-                        child: Text(FormatHelper().getCurrentTime(context), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 16),textAlign: TextAlign.center,)),
+                        child: Text(FormatHelper().formattedTime(context, ticket['departureDate']), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 16),textAlign: TextAlign.center,)),
                     const Spacer(),
                     SizedBox(width: 90,
-                        child: Text(ticket['number'].toString(), style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 16),textAlign: TextAlign.end,)),
+                        child: Text(ticket['flightNumber'].toString(), style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 16),textAlign: TextAlign.end,)),
                   ],
                 ),
                 const Gap(1),

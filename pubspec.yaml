@@ -41,6 +41,10 @@ dependencies:
   flutter_localization:
   intl:
   barcode_widget:
+  dio:
+  dartz:
+
+#  connectivity_plus:
 
 dev_dependencies:
   flutter_test:

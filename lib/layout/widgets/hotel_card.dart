@@ -6,12 +6,14 @@ import 'package:ticket_booking_app/core/class/app_layout.dart';
 class HotelCard extends StatelessWidget {
   const HotelCard({
     required this.price,
+    required this.width,
     required this.destination,
     required this.place,
     required this.image,
     super.key,
   });
   final int price;
+  final double width;
   final String place;
   final String destination;
   final String image;
@@ -21,8 +23,8 @@ class HotelCard extends StatelessWidget {
     double _width = AppLayout.getSize(context).width;
     double _height = AppLayout.getSize(context).height;
     return Container(
-      width: _width * 0.5,
-      height: _height * 0.6,
+      width: width,
+      height: _height * 0.39,
       padding: EdgeInsets.all(_width * 0.03),
       decoration:BoxDecoration(
         color: kPrimaryColor,
@@ -45,7 +47,7 @@ class HotelCard extends StatelessWidget {
             ),
           ),
           const Gap(10),
-          Text(place, style: kLargeHeading(context),),
+          Text(place, style: kLargeHeading(context).copyWith(fontSize: 22),maxLines: 2, overflow: TextOverflow.ellipsis,),
           const Gap(5),
           Text(destination, style: kSmallText(context),),
           const Gap(5),

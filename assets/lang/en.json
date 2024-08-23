@@ -7,7 +7,9 @@
   "home-date": "Date",
   "home-dep-t": "Departure Time",
   "flights": "Upcoming Flights",
+  "all-flights": "All Flights",
   "hls": "Hotels",
+  "all-hls": "All Hotels",
   "search-title": "What are\n you looking for?",
   "dept": "Departure",
   "arr": "Arrival",
@@ -36,5 +38,18 @@
   "mr-ml": "How to get More Miles",
   "dis": "20% Discount on the early \nbooking of this flight Don't Miss.",
 
-  "all": "View All"
+  "all": "View All",
+  "log-out": "Logout",
+  "lang": "Language",
+  "notify": "Notifications",
+  "enable": "Enabled",
+  "prof": "Profile",
+  "en": "English",
+  "ar": "العربية",
+  "ticket-settings": "Ticket Settings",
+  "acc": "Delete Account",
+  "pass": "Password Manager",
+  "help": "Help & Support",
+  "about": "About App"
+
 }

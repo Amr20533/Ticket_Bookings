@@ -1,14 +1,16 @@
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:provider/provider.dart';
 import 'package:ticket_booking_app/constants.dart';
 import 'package:ticket_booking_app/core/class/app_layout.dart';
+import 'package:ticket_booking_app/core/const/routes.dart';
 import 'package:ticket_booking_app/core/localization/app_localization.dart';
+import 'package:ticket_booking_app/layout/flights/all_flights_view.dart';
+import 'package:ticket_booking_app/layout/hotels/all_hotels_view.dart';
 import 'package:ticket_booking_app/layout/widgets/sliders/hotel_slider.dart';
 import 'package:ticket_booking_app/layout/widgets/sliders/ticket_slider.dart';
 import 'package:ticket_booking_app/layout/widgets/view_all_bar.dart';
-import 'package:ticket_booking_app/providers/home_provider.dart';
+import 'package:ticket_booking_app/providers/hotels_notifier.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -73,12 +75,19 @@ class HomePage extends StatelessWidget {
         ),
 
         Gap(AppLayout.getHeight(context, 35)),
-        ViewAllBar(onTap: (){},title: AppLocalizations.of(context).translate('flights'),),
+        ViewAllBar(onTap: (){
+          Navigator.pushNamed(context, AppRoutes.allTickets);
+
+        },title: AppLocalizations.of(context).translate('flights'),),
         TicketSlider(),
         Gap(AppLayout.getHeight(context, 16)),
-        ViewAllBar(onTap: (){},title: AppLocalizations.of(context).translate('hls'),),
+        ViewAllBar(onTap: (){
+          Navigator.pushNamed(context, AppRoutes.allHotels);
+        },title: AppLocalizations.of(context).translate('hls'),),
         Gap(AppLayout.getHeight(context, 16)),
         HotelSlider(),
+
+
 
       ],
     );
