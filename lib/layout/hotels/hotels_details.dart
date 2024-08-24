@@ -3,15 +3,40 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:ticket_booking_app/constants.dart';
 import 'package:ticket_booking_app/core/class/app_layout.dart';
+import 'package:ticket_booking_app/core/const/app_assets.dart';
 import 'package:ticket_booking_app/core/const/routes.dart';
 import 'package:ticket_booking_app/core/localization/app_localization.dart';
 import 'package:ticket_booking_app/layout/widgets/hotels/custom_divider.dart';
-import 'package:ticket_booking_app/layout/widgets/view_all_bar.dart';
+import 'package:ticket_booking_app/layout/widgets/hotels/custom_feature_tile.dart';
+import 'package:ticket_booking_app/layout/widgets/hotels/custom_photos_slider.dart';
+import 'package:ticket_booking_app/layout/widgets/hotels/price_and_date_selector.dart';
+import 'package:ticket_booking_app/layout/widgets/search/custom_button.dart';
+import 'package:ticket_booking_app/modules/hotels_features.dart';
+
 class HotelsDetails extends StatelessWidget {
   const HotelsDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
+    List<HotelsFeature> _features = [
+      HotelsFeature(icon: AppAssets.clean,
+        title: AppLocalizations.of(context).translate('e-cln'),
+        subTitle: AppLocalizations.of(context).translate('cln-des'),
+      ),
+      HotelsFeature(icon: AppAssets.location,
+        title: AppLocalizations.of(context).translate('grt-loc'),
+        subTitle: AppLocalizations.of(context).translate('loc-des'),
+      ),
+      HotelsFeature(icon: AppAssets.key,
+        title: AppLocalizations.of(context).translate('chk-exp'),
+        subTitle: AppLocalizations.of(context).translate('chk-exp-des'),
+      ),
+      HotelsFeature(icon: AppAssets.calendar,
+        title: AppLocalizations.of(context).translate('cnl'),
+        subTitle: '',
+      ),
+    ];
+
     return Scaffold(
       backgroundColor: kWhiteColor,
       body: SingleChildScrollView(
@@ -107,30 +132,28 @@ class HotelsDetails extends StatelessWidget {
                 ],
               ),
             ),
-            ListView.builder(
-              itemCount: 6,
-              physics: const BouncingScrollPhysics(),
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => Container(
-              width: AppLayout.getWidth(context, 120),
-              height: AppLayout.getHeight(context, 100),
-              margin: EdgeInsets.only(right: AppLayout.getWidth(context, 12)),
-              alignment: Alignment.topCenter,
-              decoration: BoxDecoration(
-                image: const DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage(
-                    'assets/image/first.jpg',
-                  ),
+            const CustomPhotosSlider(),
+            const CustomDivider(),
+            ...List.generate(_features.length, (index) => Column(
+              children: [
+                CustomFeatureTile(
+                  icon: _features[index].icon,
+                  title: _features[index].title,
+                  subTitle: _features[index].subTitle,
                 ),
-                borderRadius: BorderRadius.circular(AppLayout.getHeight(context, 8)),
-              ),
-            ),)
+                const CustomDivider(),
+              ],
+            )),
+            const PriceAndDateSelector(),
+
+
           ],
         ),
       ),
     );
   }
 }
+
+
+
 

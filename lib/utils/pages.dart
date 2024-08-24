@@ -22,5 +22,5 @@ Map<String, Widget Function(BuildContext)> pages = {
   AppRoutes.allTickets : (context) => const AllFlightsView(),
   AppRoutes.allHotels : (context) => AllHotelsView(),
   AppRoutes.allPhotos : (context) => const AllPhotosView(),
-  AppRoutes.hotelsDetails : (context) => const HotelsDetails()
+  AppRoutes.hotelsDetails : (context) => HotelsDetails()
 };
