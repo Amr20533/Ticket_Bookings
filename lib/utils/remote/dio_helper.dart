@@ -20,12 +20,73 @@ class DioHelper{
         print("No Data!");
         return [];
       }
-    } on DioError catch (dioError) {
+    } on DioException catch (dioError) {
       print('DioError: ${dioError.response?.data ?? dioError.message}');
       return [];
     } catch (e) {
       print('Error: $e');
       return [];
+    }
+  }
+
+  Future<dynamic> noAuthPostData(String endPoint, {required Map<String, dynamic> body}) async {
+    print('POST DATA to $endPoint');
+    try {
+      final response = await _dio.post(
+        '${AppEndPoints.server}/$endPoint',
+          data: body,
+          options:Options(
+            contentType: 'application/json',
+          ),
+          );
+      print('Response received: ${response.statusCode}');
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        print('POST DATA: ${response.data}');
+
+        return response.data;
+      } else {
+        print("No Data!");
+        return response.data;
+      }
+    } on DioException catch (dioError) {
+      print('DioError: ${dioError.response?.data ?? dioError.message}');
+      return dioError.response?.data;
+    } catch (e) {
+      print('Error: $e');
+      return e;
+    }
+  }
+
+
+
+  Future<dynamic> postData(String endPoint, {required String token, required Map<String, dynamic> body}) async {
+    print('POST DATA to $endPoint');
+    try {
+      final response = await _dio.post(
+        '${AppEndPoints.server}/$endPoint',
+        data: body,
+        options:Options(
+          contentType: 'application/json',
+          headers: {
+            'Authorization' : 'Bearer $token'
+          },
+        ),
+      );
+      print('Response received: ${response.statusCode}');
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        print('POST DATA: ${response.data}');
+
+        return response.data;
+      } else {
+        print("No Data!");
+        return response.data;
+      }
+    } on DioException catch (dioError) {
+      print('DioError: ${dioError.response?.data ?? dioError.message}');
+      return dioError.response?.data;
+    } catch (e) {
+      print('Error: $e');
+      return e;
     }
   }
 

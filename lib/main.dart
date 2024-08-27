@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ticket_booking_app/providers/auth/login_notifier.dart';
 import 'package:ticket_booking_app/providers/flights_notifier.dart';
 import 'package:ticket_booking_app/providers/home_provider.dart';
 import 'package:ticket_booking_app/providers/hotels_notifier.dart';
 import 'package:ticket_booking_app/providers/language_notifier.dart';
 import 'package:ticket_booking_app/providers/search_notifier.dart';
+import 'package:ticket_booking_app/utils/helpers/dataService.dart';
 import 'package:ticket_booking_app/utils/pages.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await DataService.init();
+
   runApp(
     MultiProvider(
       providers: [
@@ -16,6 +21,7 @@ void main() {
         ChangeNotifierProvider(create: (context) => HotelsNotifier()),
         ChangeNotifierProvider(create: (context) => LanguageNotifier()),
         ChangeNotifierProvider(create: (context) => FlightsNotifier()),
+        ChangeNotifierProvider(create: (context) => LoginNotifier()),
       ],
       child: const MyApp(),
     ),

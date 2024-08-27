@@ -4,9 +4,13 @@ import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:ticket_booking_app/constants.dart';
 import 'package:ticket_booking_app/core/class/app_layout.dart';
+import 'package:ticket_booking_app/core/const/app_assets.dart';
 import 'package:ticket_booking_app/core/const/routes.dart';
 import 'package:ticket_booking_app/core/localization/app_localization.dart';
+import 'package:ticket_booking_app/layout/widgets/auth/non_user.dart';
+import 'package:ticket_booking_app/layout/widgets/search/custom_button.dart';
 import 'package:ticket_booking_app/layout/widgets/settings/custom_settings_tile.dart';
+import 'package:ticket_booking_app/providers/auth/login_notifier.dart';
 import 'package:ticket_booking_app/providers/language_notifier.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -15,10 +19,10 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double _width = AppLayout.getScreenWidth(context);
-    double _height = AppLayout.getScreenHeight(context);
     final locale = Provider.of<LanguageNotifier>(context);
+    final loginNotifier = Provider.of<LoginNotifier>(context);
 
-    return Column(
+    return loginNotifier.isLoggedIn ? Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Gap(AppLayout.getHeight(context, 20)),
@@ -75,7 +79,7 @@ class ProfilePage extends StatelessWidget {
         ),
         Container(
           width: _width,
-          height: AppLayout.getHeight(context, 300),
+          // height: AppLayout.getHeight(context, 300),
           margin: EdgeInsets.symmetric(vertical: AppLayout.getHeight(context, 20), horizontal: AppLayout.getWidth(context, 18)),
           padding: EdgeInsets.symmetric(vertical: AppLayout.getHeight(context, 8)),
           decoration: BoxDecoration(
@@ -113,6 +117,24 @@ class ProfilePage extends StatelessWidget {
                 icon: FluentSystemIcons.ic_fluent_ticket_regular,
               ),
               CustomSettingsTile(onTap:(){},
+                title: AppLocalizations.of(context).translate("fav"),
+                icon: FluentSystemIcons.ic_fluent_heart_regular,
+              ),
+              CustomSettingsTile(onTap:(){
+                Navigator.pushNamed(context, AppRoutes.about);
+              },
+                title: AppLocalizations.of(context).translate("terms"),
+                icon: FluentSystemIcons.ic_fluent_calendar_agenda_regular,
+              ),
+              CustomSettingsTile(onTap:(){
+                Navigator.pushNamed(context, AppRoutes.privacy);
+              },
+                title: AppLocalizations.of(context).translate("policy"),
+                icon: FluentSystemIcons.ic_fluent_shield_regular,
+              ),
+              CustomSettingsTile(onTap:(){
+
+              },
                 title: AppLocalizations.of(context).translate("log-out"),
                 icon: FluentSystemIcons.ic_fluent_sign_out_regular,
               ),
@@ -121,9 +143,12 @@ class ProfilePage extends StatelessWidget {
         ),
       ],
 
-    );
+    )
+    :
+    const NonUser();
   }
 }
+
 
 
 
