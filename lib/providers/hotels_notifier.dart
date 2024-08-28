@@ -16,7 +16,7 @@ class HotelsNotifier extends ChangeNotifier{
   // Map<String, dynamic> data = {};
 
   Future<List<dynamic>> getHotelsData() async {
-    hotels = await helper.getData(AppEndPoints.getAllHotels);
+    hotels = await helper.getNoAuthData(AppEndPoints.getAllHotels);
     return hotels;
   }
 

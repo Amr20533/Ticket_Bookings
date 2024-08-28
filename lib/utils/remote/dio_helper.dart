@@ -4,7 +4,7 @@ import 'package:ticket_booking_app/utils/end_points.dart';
 class DioHelper{
   final Dio _dio = Dio();
 
-  Future<List<dynamic>> getData(String endPoint) async {
+  Future<List<dynamic>> getNoAuthData(String endPoint) async {
     print('Fetching data from $endPoint');
     try {
       final response = await _dio.get(
@@ -19,6 +19,35 @@ class DioHelper{
       } else {
         print("No Data!");
         return [];
+      }
+    } on DioException catch (dioError) {
+      print('DioError: ${dioError.response?.data ?? dioError.message}');
+      return [];
+    } catch (e) {
+      print('Error: $e');
+      return [];
+    }
+  }
+
+  Future<dynamic> userGetData({required String endPoint, required String token}) async {
+    print('Fetching data from $endPoint');
+    try {
+      final response = await _dio.get(
+        '${AppEndPoints.server}/$endPoint',
+        options: Options(
+          contentType: 'application/json',
+          headers: {
+            'Authorization': 'Bearer $token',
+          },
+        ),
+      );
+      print('Response received: ${response.statusCode}');
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        print('Data: ${response.data}');
+        return response.data;
+      } else {
+        print("No Data!");
+        return response.data;
       }
     } on DioException catch (dioError) {
       print('DioError: ${dioError.response?.data ?? dioError.message}');

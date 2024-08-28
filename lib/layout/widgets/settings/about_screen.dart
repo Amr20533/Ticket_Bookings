@@ -8,7 +8,7 @@ class AboutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customSettingsAppBar(context, title: AppLocalizations.of(context).translate("about")),
+      appBar: customSettingsAppBar(context, title: AppLocalizations.of(context).translate("terms")),
     );
   }
 }

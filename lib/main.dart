@@ -6,6 +6,7 @@ import 'package:ticket_booking_app/providers/home_provider.dart';
 import 'package:ticket_booking_app/providers/hotels_notifier.dart';
 import 'package:ticket_booking_app/providers/language_notifier.dart';
 import 'package:ticket_booking_app/providers/search_notifier.dart';
+import 'package:ticket_booking_app/providers/settings/profile_notifier.dart';
 import 'package:ticket_booking_app/utils/helpers/dataService.dart';
 import 'package:ticket_booking_app/utils/pages.dart';
 
@@ -22,6 +23,7 @@ void main() async{
         ChangeNotifierProvider(create: (context) => LanguageNotifier()),
         ChangeNotifierProvider(create: (context) => FlightsNotifier()),
         ChangeNotifierProvider(create: (context) => LoginNotifier()),
+        ChangeNotifierProvider(create: (context) => ProfileNotifier()),
       ],
       child: const MyApp(),
     ),

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ticket_booking_app/models/auth/login_model.dart';
-import 'package:ticket_booking_app/models/auth/login_response_model.dart';
 import 'package:ticket_booking_app/utils/end_points.dart';
 import 'package:ticket_booking_app/utils/helpers/dataService.dart';
 import 'package:ticket_booking_app/utils/remote/dio_helper.dart';
@@ -11,33 +9,31 @@ class ProfileNotifier extends ChangeNotifier{
   late TextEditingController emailController;
   late TextEditingController passwordController;
 
-  bool _isLoggedIn = false;
+  bool isLoggedIn = DataService.sharedPreferences.getBool('isLoggedIn') ?? false;
 
-  bool get isLoggedIn => _isLoggedIn;
 
-  set isLoggedIn(bool newStatus){
-    _isLoggedIn = newStatus;
-    notifyListeners();
-  }
+  Future<dynamic> getUserData() async {
+    String? token = DataService.sharedPreferences.getString('userToken');
+    try {
+      var profileData = await helper.userGetData(
+        endPoint: AppEndPoints.userGetProfileData,
+        token: token!,
+      );
 
-  Future<dynamic> userLogin(LoginModel loginModel) async {
-    var loginData = await helper.noAuthPostData(AppEndPoints.userLogin,
-        body: loginModel.toJson()
-    );
-    LoginResponseModel loginResponse = LoginResponseModel.fromJson(loginData);
-
-    DataService.setData(key: 'isLoggedIn', value: true);
-    _isLoggedIn = DataService.sharedPreferences.getBool('isLoggedIn')!;
-    DataService.setData(key: 'userToken', value: loginResponse.token);
-    DataService.setData(key: 'userId', value: loginResponse.data.user!.sId!);
-    return loginData;
+      return profileData['data']['data'];
+    } catch (e) {
+      print('Error fetching user data: $e');
+      // Handles error appropriately, maybe return a default ProfileDataModel or rethrow
+      return Future.error('Failed to fetch user data');
+    }
   }
 
 
   void userLogout() async {
-    _isLoggedIn = DataService.setData(key: 'isLoggedIn', value: false);
+    DataService.setData(key: 'isLoggedIn', value: false);
     DataService.removeData(key: 'userToken');
     DataService.removeData(key: 'userId');
+    notifyListeners();
   }
 
 

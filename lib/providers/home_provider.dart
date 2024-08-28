@@ -1,5 +1,6 @@
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:ticket_booking_app/layout/favorites_page.dart';
 import 'package:ticket_booking_app/layout/home_page.dart';
 import 'package:ticket_booking_app/layout/profile_page.dart';
 import 'package:ticket_booking_app/layout/search_page.dart';
@@ -12,7 +13,7 @@ class HomeNotifier extends ChangeNotifier{
  List<Widget> screens = [
     HomePage(),
     SearchPage(),
-    TicketPage(),
+    FavoritesPage(),
     ProfilePage(),
   ];
 

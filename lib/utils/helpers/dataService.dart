@@ -24,7 +24,7 @@ class DataService{
   }
 
   static dynamic getData({required String key})async{
-    return sharedPreferences.get(key);
+    return await sharedPreferences.getString(key);
   }
 
   static Future<bool> removeData({required String key})async{

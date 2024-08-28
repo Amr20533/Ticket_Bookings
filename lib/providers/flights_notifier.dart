@@ -8,7 +8,7 @@ class FlightsNotifier extends ChangeNotifier{
   List<dynamic> flights = [];
 
   Future<List<dynamic>> getAllFlights() async {
-    flights = await helper.getData(AppEndPoints.getAllFlights);
+    flights = await helper.getNoAuthData(AppEndPoints.getAllFlights);
     return flights;
   }
 

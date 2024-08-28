@@ -13,6 +13,8 @@ class AppRoutes{
   static const String helpCenter = '/help-center';
   static const String privacy = '/privacy-policy';
   static const String about = '/about';
+  static const String favorite = '/favorite';
+  static const String tickets = '/tickets';
   static const String pass = '/password-settings';
 
   static const String allHotels = '/all-hotels';
