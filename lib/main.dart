@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ticket_booking_app/providers/auth/forgot_password_notifier.dart';
 import 'package:ticket_booking_app/providers/auth/login_notifier.dart';
 import 'package:ticket_booking_app/providers/auth/register_notifier.dart';
 import 'package:ticket_booking_app/providers/flights_notifier.dart';
@@ -9,7 +10,7 @@ import 'package:ticket_booking_app/providers/language_notifier.dart';
 import 'package:ticket_booking_app/providers/search_notifier.dart';
 import 'package:ticket_booking_app/providers/settings/profile_notifier.dart';
 import 'package:ticket_booking_app/utils/helpers/dataService.dart';
-import 'package:ticket_booking_app/utils/pages.dart';
+import 'package:ticket_booking_app/utils/hero_static/pages.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +26,7 @@ void main() async{
         ChangeNotifierProvider(create: (context) => FlightsNotifier()),
         ChangeNotifierProvider(create: (context) => LoginNotifier()),
         ChangeNotifierProvider(create: (context) => RegisterNotifier()),
+        ChangeNotifierProvider(create: (context) => ForgotPasswordNotifier()),
         ChangeNotifierProvider(create: (context) => ProfileNotifier()),
       ],
       child: const MyApp(),

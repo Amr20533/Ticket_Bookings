@@ -6,7 +6,7 @@ import 'package:ticket_booking_app/layout/home_page.dart';
 import 'package:ticket_booking_app/layout/profile_page.dart';
 import 'package:ticket_booking_app/layout/search_page.dart';
 import 'package:ticket_booking_app/layout/ticket_page.dart';
-import 'package:ticket_booking_app/utils/end_points.dart';
+import 'package:ticket_booking_app/utils/hero_static/end_points.dart';
 import 'package:ticket_booking_app/utils/remote/dio_helper.dart';
 
 class HotelsNotifier extends ChangeNotifier{

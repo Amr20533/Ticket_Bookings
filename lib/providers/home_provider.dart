@@ -13,7 +13,7 @@ class HomeNotifier extends ChangeNotifier{
  List<Widget> screens = [
     HomePage(),
     SearchPage(),
-    FavoritesPage(),
+    TicketPage(),
     ProfilePage(),
   ];
 

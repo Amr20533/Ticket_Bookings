@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:ticket_booking_app/utils/end_points.dart';
+import 'package:ticket_booking_app/utils/hero_static/end_points.dart';
 
 class DioHelper{
   final Dio _dio = Dio();

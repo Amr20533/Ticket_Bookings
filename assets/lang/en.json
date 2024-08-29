@@ -37,6 +37,7 @@
   "the-award": "You've 150 flights in a year",
   "mr-ml": "How to get More Miles",
   "dis": "20% Discount on the early \nbooking of this flight Don't Miss.",
+  "continue": "Continue",
 
   "all": "View All",
   "log-out": "Logout",
@@ -81,7 +82,9 @@
   "ent-new-pass": "Please enter new password",
   "update-pass": "Password Update Successfully",
   "suc-update-pass": "Your password has been updated successfully",
-  "forgot-pass": "Forgot Password?",
+  "forgot-pass": "Forgot Password",
+  "send-code": "please Enter Your Email Address To Receive A verification code.",
+
   "al-mem": "Already a member?",
   "reg-now": "Register Now",
   "let-log": "Let's get you Login!",
@@ -98,6 +101,8 @@
   "gender": "Gender",
   "male": "Male",
   "female": "Female",
-  "please_enter": "Please enter your"
+  "verify": "Verify",
+  "please_enter": "Please enter your",
+  "save": "Save"
 
 }

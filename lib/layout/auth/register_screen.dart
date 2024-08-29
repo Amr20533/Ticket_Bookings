@@ -1,9 +1,9 @@
+import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:ticket_booking_app/constants.dart';
 import 'package:ticket_booking_app/core/class/app_layout.dart';
-import 'package:ticket_booking_app/core/const/routes.dart';
 import 'package:ticket_booking_app/core/localization/app_localization.dart';
 import 'package:ticket_booking_app/layout/widgets/auth/custom_input_field.dart';
 import 'package:ticket_booking_app/layout/widgets/auth/custom_text_button.dart';
@@ -132,6 +132,13 @@ class _RegisterScreenState extends State<RegisterScreen> with SingleTickerProvid
                             }
                             return null;
                           },
+                          secure: register.isPassword,
+                          suffixIcon: IconButton(
+                            onPressed: (){
+                              register.isPassword = !register.isPassword;
+                            },
+                            icon: Icon(register.isPassword ? FluentSystemIcons.ic_fluent_eye_show_regular : FluentSystemIcons.ic_fluent_eye_hide_regular),
+                          ),
                           label: AppLocalizations.of(context).translate('mail'),
                         ),
                       ),
@@ -148,6 +155,13 @@ class _RegisterScreenState extends State<RegisterScreen> with SingleTickerProvid
                             }
                             return null;
                           },
+                          secure: register.isPassword,
+                          suffixIcon: IconButton(
+                            onPressed: (){
+                              register.isPassword = !register.isPassword;
+                            },
+                            icon: Icon(register.isPassword ? FluentSystemIcons.ic_fluent_eye_show_regular : FluentSystemIcons.ic_fluent_eye_hide_regular),
+                          ),
                           label: AppLocalizations.of(context).translate('password'),
                         ),
                       ),
@@ -191,7 +205,8 @@ class _RegisterScreenState extends State<RegisterScreen> with SingleTickerProvid
                           style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w400),),
                         CustomTextButton(
                           onPressed: (){
-                            Navigator.of(context).pushNamed(AppRoutes.login);
+                            // Navigator.of(context).pushNamed(AppRoutes.login);
+                            Navigator.pop(context);
                           },
                           text: AppLocalizations.of(context).translate('log'),),
                       ],
