@@ -83,17 +83,21 @@
   "suc-update-pass": "Your password has been updated successfully",
   "forgot-pass": "Forgot Password?",
   "al-mem": "Already a member?",
-  "reg-now": "Register Now!",
+  "reg-now": "Register Now",
   "let-log": "Let's get you Login!",
   "ent-info": "Enter your information below",
-  "name": "Name",
+  "firstName": "First Name",
+  "lastName": "last Name",
   "ent-name": "Enter Your Name",
   "password": "Password",
+  "conf-pass": "Confirm Password",
   "mail": "Email Address",
   "phone": "Mobile Number",
   "ent-phone": "Enter your mobile number",
   "DOB": "Date of Birth",
   "gender": "Gender",
   "male": "Male",
-  "female": "Female"
+  "female": "Female",
+  "please_enter": "Please enter your"
+
 }

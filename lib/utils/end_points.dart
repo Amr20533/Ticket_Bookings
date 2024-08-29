@@ -1,5 +1,5 @@
 class AppEndPoints{
-  static const String server = 'http://10.0.2.2:3005';
+  static const String server = 'http://10.0.2.2:3000';
 
   /// *********************** Authentication ***********************
   static const String userLogin = 'api/v1/users/login';

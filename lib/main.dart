@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ticket_booking_app/providers/auth/login_notifier.dart';
+import 'package:ticket_booking_app/providers/auth/register_notifier.dart';
 import 'package:ticket_booking_app/providers/flights_notifier.dart';
 import 'package:ticket_booking_app/providers/home_provider.dart';
 import 'package:ticket_booking_app/providers/hotels_notifier.dart';
@@ -23,6 +24,7 @@ void main() async{
         ChangeNotifierProvider(create: (context) => LanguageNotifier()),
         ChangeNotifierProvider(create: (context) => FlightsNotifier()),
         ChangeNotifierProvider(create: (context) => LoginNotifier()),
+        ChangeNotifierProvider(create: (context) => RegisterNotifier()),
         ChangeNotifierProvider(create: (context) => ProfileNotifier()),
       ],
       child: const MyApp(),

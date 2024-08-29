@@ -34,7 +34,7 @@ class CustomButton extends StatelessWidget {
         color: kPrimaryButtonColor,
         elevation: 0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0), ),
+          borderRadius: BorderRadius.circular(10.0), ),
         child: Text(_title, style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.white, fontSize: fontSize, fontWeight: fontWeight),),
       ),);
   }

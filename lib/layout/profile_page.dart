@@ -15,7 +15,8 @@ class ProfilePage extends StatelessWidget {
     final locale = Provider.of<LanguageNotifier>(context);
 
     return Consumer<ProfileNotifier>(builder: (context, profile, _){
-      return FutureBuilder<dynamic>(
+      return profile.isLoggedIn ?
+      FutureBuilder<dynamic>(
         future: profile.getUserData(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -24,18 +25,18 @@ class ProfilePage extends StatelessWidget {
             return Text('Error: ${snapshot.error}');
           } else if (snapshot.hasData) {
             var data = snapshot.data!;
-            return profile.isLoggedIn ? CustomProfileView(
+            return CustomProfileView(
                 width: AppLayout.getScreenWidth(context),
                 data: data,
                 locale: locale
-            )
-                :
-            const NonUser();
+            );
           } else {
             return const Text('No data available');
           }
         },
-      );
+      )
+          :
+      const NonUser();
     });
 
   }
