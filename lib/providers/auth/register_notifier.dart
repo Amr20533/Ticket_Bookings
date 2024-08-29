@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ticket_booking_app/models/auth/login_model.dart';
 import 'package:ticket_booking_app/models/auth/login_response_model.dart';
 import 'package:ticket_booking_app/models/auth/register_model.dart';
-import 'package:ticket_booking_app/utils/end_points.dart';
+import 'package:ticket_booking_app/utils/hero_static/end_points.dart';
 import 'package:ticket_booking_app/utils/helpers/dataService.dart';
 import 'package:ticket_booking_app/utils/remote/dio_helper.dart';
 
@@ -20,6 +20,15 @@ class RegisterNotifier extends ChangeNotifier{
 
   set isLoggedIn(bool newStatus){
     _isLoggedIn = newStatus;
+    notifyListeners();
+  }
+
+  bool _isPassword = true;
+
+  bool get isPassword => _isPassword;
+
+  set isPassword(bool newStatus){
+    _isPassword = newStatus;
     notifyListeners();
   }
 

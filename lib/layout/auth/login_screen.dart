@@ -1,10 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ticket_booking_app/constants.dart';
 import 'package:ticket_booking_app/core/class/app_layout.dart';
 import 'package:ticket_booking_app/core/localization/app_localization.dart';
-import 'package:ticket_booking_app/core/reusable_transitions/register_transition.dart';
+import 'package:ticket_booking_app/utils/hero_static/custom_page_transition.dart';
+import 'package:ticket_booking_app/layout/auth/forgot_password.dart';
+import 'package:ticket_booking_app/layout/auth/register_screen.dart';
 import 'package:ticket_booking_app/layout/widgets/auth/custom_input_field.dart';
 import 'package:ticket_booking_app/layout/widgets/auth/custom_text_button.dart';
 import 'package:ticket_booking_app/layout/widgets/search/custom_button.dart';
@@ -21,8 +22,10 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin{
   late AnimationController _animationController;
   late AnimationController _buttonAnimationController;
+  late AnimationController _textAnimationController;
   late Animation<Offset> _animation;
   late Animation<Offset> _buttonAnimation;
+  late Animation<Offset> _textAnimation;
   @override
   void initState() {
     super.initState();
@@ -32,6 +35,11 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
     );
 
     _buttonAnimationController = AnimationController(
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    );
+
+    _textAnimationController = AnimationController(
       duration: const Duration(seconds: 1),
       vsync: this,
     );
@@ -56,16 +64,21 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
         curve: Curves.easeInOut,
       ),
     );
+
+    _textAnimation = Tween<Offset>(
+      begin: const Offset(0, -1.0),
+      end: const Offset(0, 0),
+    ).animate(
+      CurvedAnimation(
+        parent: _textAnimationController,
+        curve: Curves.easeInOut,
+      ),
+    );
     _animationController.forward();
     _buttonAnimationController.forward();
+    _textAnimationController.forward();
   }
 
-  @override
-  void dispose() {
-    _animationController.dispose();
-    _buttonAnimationController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,6 +102,7 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
                       padding: EdgeInsets.symmetric(vertical: AppLayout.getHeight(context, 4)),
                       child: Text(AppLocalizations.of(context).translate('ent-info'), style: Theme.of(context).textTheme.titleSmall!.copyWith(color: kGreyColor, fontSize: 14,fontWeight: FontWeight.w400),),
                     ),
+
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: AppLayout.getHeight(context, 18)),
                       child: Row(
@@ -116,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
                           controller: login.emailController,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please enter your username';
+                              return 'Please enter your email';
                             }
                             return null;
                           },
@@ -125,7 +139,8 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
                       ),
                     ),
                     SlideTransition(
-                      position: _animation,                      child: Padding(
+                        position: _animation,
+                        child: Padding(
                         padding: EdgeInsets.symmetric(vertical: AppLayout.getHeight(context, 8)),
                         child: CustomInputField(
                           controller: login.passwordController,
@@ -141,14 +156,18 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
                     ),
                     Align(
                       alignment: AlignmentDirectional.centerEnd,
-                      child: CustomTextButton(
-                        onPressed: (){
-
-                        },
-                        text: AppLocalizations.of(context).translate('forgot-pass'),),
+                      child: SlideTransition(
+                        position: _buttonAnimation,
+                        child: CustomTextButton(
+                          onPressed: (){
+                            Navigator.of(context).push(customPageTransition(widget: const ForgotPasswordScreen()));
+                          },
+                          text: AppLocalizations.of(context).translate('forgot-pass'),),
+                      ),
                     ),
                     SlideTransition(
-                      position: _buttonAnimation,                      child: CustomButton(
+                      position: _textAnimation,
+                      child: CustomButton(
                         onPressed: (){
                           _login(context,loginNotifier: login);
                         },
@@ -160,15 +179,16 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
                       ),
                     ),
                     const Spacer(),
-                    Row(mainAxisAlignment: MainAxisAlignment.center,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                      Text(AppLocalizations.of(context).translate('have-acc'),
-                      style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w400),),
-                      CustomTextButton(
-                        onPressed: (){
-                          Navigator.of(context).push(customRegisterTransition());
-                        },
-                        text: AppLocalizations.of(context).translate('reg-now'),),
+                        Text(AppLocalizations.of(context).translate('have-acc'),
+                        style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black, fontWeight: FontWeight.w400),),
+                        CustomTextButton(
+                          onPressed: (){
+                            Navigator.of(context).push(customPageTransition(widget: const RegisterScreen()));
+                          },
+                          text: AppLocalizations.of(context).translate('reg-now'),),
                       ],
                     )
                   ],
@@ -204,6 +224,14 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
       debugPrint('Could not Login!!!');
     }
   }
+  @override
+  void dispose() {
+    _animationController.dispose();
+    _buttonAnimationController.dispose();
+    _textAnimationController.dispose();
+    super.dispose();
+  }
+
 }
 
 

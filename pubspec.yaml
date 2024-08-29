@@ -23,7 +23,7 @@ dependencies:
   dartz:
   flutter_svg:
   shared_preferences:
-
+  flutter_otp_text_field:
 
 dev_dependencies:
   flutter_test:

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ticket_booking_app/core/class/app_layout.dart';
 import 'package:ticket_booking_app/core/const/app_assets.dart';
-import 'package:ticket_booking_app/core/const/routes.dart';
 import 'package:ticket_booking_app/core/localization/app_localization.dart';
+import 'package:ticket_booking_app/utils/hero_static/custom_page_transition.dart';
+import 'package:ticket_booking_app/layout/auth/login_screen.dart';
 import 'package:ticket_booking_app/layout/widgets/search/custom_button.dart';
 
 class NonUser extends StatelessWidget {
@@ -35,7 +36,7 @@ class NonUser extends StatelessWidget {
           const Spacer(),
           CustomButton(
             onPressed: (){
-              Navigator.pushNamed(context, AppRoutes.login);
+              Navigator.of(context).push(customPageTransition(widget: const LoginScreen()));
             },
             width: AppLayout.getWidth(context, 65),
             height: AppLayout.getHeight(context, 30),

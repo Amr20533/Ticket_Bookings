@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ticket_booking_app/utils/end_points.dart';
+import 'package:ticket_booking_app/utils/hero_static/end_points.dart';
 import 'package:ticket_booking_app/utils/helpers/dataService.dart';
 import 'package:ticket_booking_app/utils/remote/dio_helper.dart';
 

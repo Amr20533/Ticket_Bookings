@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ticket_booking_app/core/const/routes.dart';
+import 'package:ticket_booking_app/layout/auth/forgot_password.dart';
 import 'package:ticket_booking_app/layout/auth/login_screen.dart';
 import 'package:ticket_booking_app/layout/auth/register_screen.dart';
+import 'package:ticket_booking_app/layout/auth/reset_password.dart';
+import 'package:ticket_booking_app/layout/auth/verify_code_screen.dart';
 import 'package:ticket_booking_app/layout/favorites_page.dart';
 import 'package:ticket_booking_app/layout/flights/all_flights_view.dart';
 import 'package:ticket_booking_app/layout/hotels/all_hotels_view.dart';
@@ -25,6 +28,9 @@ Map<String, Widget Function(BuildContext)> pages = {
   ///  ---------------------------  Authentication Routes ------------------------------
   AppRoutes.login : (context) =>  const LoginScreen(),
   AppRoutes.register : (context) =>  const RegisterScreen(),
+  AppRoutes.forgotPassword : (context) =>  const ForgotPasswordScreen(),
+  AppRoutes.verifyCode : (context) =>  const VerifyCodeScreen(),
+  AppRoutes.resetPassword : (context) =>  const ResetPasswordScreen(),
 
 
   ///  ---------------------------  Profile Routes ------------------------------
