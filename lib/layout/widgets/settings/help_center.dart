@@ -9,6 +9,7 @@ class HelpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customSettingsAppBar(context, title: AppLocalizations.of(context).translate("help")),
+
     );
   }
 }
