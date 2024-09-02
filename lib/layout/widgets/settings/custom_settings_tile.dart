@@ -8,6 +8,7 @@ class CustomSettingsTile extends StatelessWidget {
     required this.onTap,
     required this.title,
     required this.icon,
+    this.iconColor = kLightIconColor,
     this.subTitle,
     this.enabled = false,
     super.key,
@@ -16,6 +17,7 @@ class CustomSettingsTile extends StatelessWidget {
   final VoidCallback onTap;
   final String title;
   final IconData icon;
+  final Color? iconColor;
   final String? subTitle;
   final bool enabled;
 
@@ -34,7 +36,7 @@ class CustomSettingsTile extends StatelessWidget {
               // borderRadius: BorderRadius.circular(10),
             ),
             // backgroundColor: const Color(0xFFF5F5F5),
-            child: Icon(icon, size: AppLayout.getWidth(context, 20), color: kLightIconColor,)),
+            child: Icon(icon, size: AppLayout.getWidth(context, 20), color: iconColor,)),
         title:Text(title, style: Theme.of(context).textTheme.titleMedium),
         trailing: Row(mainAxisSize: MainAxisSize.min,
           children: [

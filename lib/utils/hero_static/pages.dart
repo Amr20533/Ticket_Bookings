@@ -16,6 +16,7 @@ import 'package:ticket_booking_app/layout/settings/password_settings.dart';
 import 'package:ticket_booking_app/layout/settings/ticket_settings_page.dart';
 import 'package:ticket_booking_app/layout/ticket_page.dart';
 import 'package:ticket_booking_app/layout/widgets/settings/about_screen.dart';
+import 'package:ticket_booking_app/layout/widgets/settings/account_manager.dart';
 import 'package:ticket_booking_app/layout/widgets/settings/help_center.dart';
 import 'package:ticket_booking_app/layout/widgets/settings/privacy_screen.dart';
 
@@ -40,6 +41,7 @@ Map<String, Widget Function(BuildContext)> pages = {
   AppRoutes.tickets : (context) => TicketPage(),
   AppRoutes.privacy : (context) => const PrivacyScreen(),
   AppRoutes.pass : (context) => const PasswordSettings(),
+  AppRoutes.account : (context) => const AccountManager(),
 
   AppRoutes.allTickets : (context) => const AllFlightsView(),
   AppRoutes.allHotels : (context) => AllHotelsView(),

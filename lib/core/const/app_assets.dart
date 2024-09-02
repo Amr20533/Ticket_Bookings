@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 class AppAssets{
   static const String iconsPath = 'assets/icons';
@@ -9,6 +8,9 @@ class AppAssets{
   static const String clean = '$iconsPath/clean.svg';
   static const String location = '$iconsPath/location-pin.svg';
   static const String calendar = '$iconsPath/calendar.svg';
+  static const String done = '$iconsPath/done.gif';
+  static const String done1 = '$iconsPath/done (1).gif';
+
 
   static const String nonUser = '$imagesPath/non_user.jpeg';
 
