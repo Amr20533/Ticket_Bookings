@@ -6,9 +6,12 @@ import 'package:ticket_booking_app/constants.dart';
 import 'package:ticket_booking_app/core/class/app_layout.dart';
 import 'package:ticket_booking_app/core/const/routes.dart';
 import 'package:ticket_booking_app/core/localization/app_localization.dart';
+import 'package:ticket_booking_app/layout/widgets/profile/edit_profile_page.dart';
+import 'package:ticket_booking_app/layout/widgets/settings/account_manager.dart';
 import 'package:ticket_booking_app/layout/widgets/settings/custom_settings_tile.dart';
 import 'package:ticket_booking_app/providers/language_notifier.dart';
 import 'package:ticket_booking_app/providers/settings/profile_notifier.dart';
+import 'package:ticket_booking_app/utils/hero_static/custom_page_transition.dart';
 
 class CustomProfileView extends StatelessWidget {
   const CustomProfileView({
@@ -30,7 +33,7 @@ class CustomProfileView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Gap(AppLayout.getHeight(context, 20)),
-        Text(AppLocalizations.of(context).translate("prof")),
+        // Text(AppLocalizations.of(context).translate("prof")),
         Container(
           width: _width,
           height: AppLayout.getHeight(context, 80),
@@ -61,7 +64,9 @@ class CustomProfileView extends StatelessWidget {
             ],
           ),
             SizedBox(width: AppLayout.getWidth(context, 85)),
-            InkWell(onTap: (){}, child: const Icon(FluentSystemIcons.ic_fluent_edit_regular, color: Colors.white,)),
+            InkWell(onTap: (){
+              Navigator.push(context, customPageTransition(widget: const EditProfilePage()));
+            }, child: const Icon(FluentSystemIcons.ic_fluent_edit_regular, color: Colors.white,)),
           ],
         ),
         ),
@@ -98,7 +103,7 @@ class CustomProfileView extends StatelessWidget {
                 enabled: true,
               ),
               CustomSettingsTile(onTap:(){
-
+                Navigator.of(context).push(customPageTransition(widget: const AccountManager()));
               },
                 title: AppLocalizations.of(context).translate("pass"),
                 icon: FluentSystemIcons.ic_fluent_person_accounts_filled,

@@ -160,7 +160,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> with TickerPr
                         width: AppLayout.getScreenWidth(context),
                         height: AppLayout.getHeight(context, 60),
                         fontSize: 16,fontWeight: FontWeight.w400,hPadding: 0,
-                        title: AppLocalizations.of(context).translate('Verify'),
+                        title: AppLocalizations.of(context).translate('verify'),
 
                       ),
                     ),

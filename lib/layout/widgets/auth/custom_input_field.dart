@@ -8,14 +8,14 @@ class CustomInputField extends StatelessWidget {
     required TextEditingController controller,
     required this.validator,
     required this.label,
-    // required this.hintText,
+    this.hintText,
     this.secure = false,
     this.suffixIcon,
   }) : _controller = controller;
 
   final TextEditingController _controller;
   final String label;
-  // final String hintText;
+  final String? hintText;
   final Widget? suffixIcon;
   final bool secure;
   final String? Function(String?)? validator;
@@ -27,7 +27,7 @@ class CustomInputField extends StatelessWidget {
       obscureText: secure,
       decoration: InputDecoration(
           labelText: label,
-          // hintText: hintText,
+          hintText: hintText,
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(AppLayout.getWidth(context, 12))),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppLayout.getWidth(context, 12)),
