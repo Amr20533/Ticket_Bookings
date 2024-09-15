@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:ticket_booking_app/core/class/app_layout.dart';
+import 'package:ticket_booking_app/core/const/routes.dart';
 import 'package:ticket_booking_app/layout/widgets/ticket_box.dart';
 import 'package:ticket_booking_app/modules/hotels.dart';
 import 'package:ticket_booking_app/providers/flights_notifier.dart';
@@ -17,7 +18,7 @@ class TicketSlider extends StatelessWidget {
   bool isRTL = langNotifier.locale.languageCode.toLowerCase() == 'ar';
   return Container(
           padding: isRTL ? const EdgeInsets.only(right: 16) : const EdgeInsets.only(left: 16),
-          height: 200,
+          height: AppLayout.getHeight(context, 220),
           child: FutureBuilder<List<dynamic>>(
             future: FlightsNotifier().getAllFlights(),
             builder: (context, snapshot) {

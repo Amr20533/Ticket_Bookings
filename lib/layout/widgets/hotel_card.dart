@@ -7,17 +7,13 @@ import 'package:ticket_booking_app/core/const/routes.dart';
 class HotelCard extends StatelessWidget {
   const HotelCard({
     required this.price,
+    required this.hotels,
     required this.width,
-    required this.destination,
-    required this.place,
-    required this.image,
     super.key,
   });
-  final int price;
+  final dynamic hotels;
   final double width;
-  final String place;
-  final String destination;
-  final String image;
+  final int price;
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +21,13 @@ class HotelCard extends StatelessWidget {
     double _height = AppLayout.getSize(context).height;
     return GestureDetector(
       onTap: (){
-        Navigator.pushNamed(context, AppRoutes.hotelsDetails);
+        Navigator.pushNamed(context, AppRoutes.hotelsDetails,
+          arguments: hotels,
+        );
       },
       child: Container(
         width: width,
-        height: _height * 0.39,
+        // height: AppLayout.getHeight(context, 140),
         padding: EdgeInsets.all(_width * 0.03),
         decoration:BoxDecoration(
           color: kPrimaryColor,
@@ -41,10 +39,10 @@ class HotelCard extends StatelessWidget {
               width: _width * 0.5,
               height: _height * 0.2,
               decoration:BoxDecoration(
-                image: DecorationImage(
+                image: const DecorationImage(
                   fit: BoxFit.cover,
                   image: AssetImage(
-                    'assets/image/$image',
+                    'assets/image/first.jpg',
                   )
                 ),
                 // color: Colors.redAccent,
@@ -52,9 +50,9 @@ class HotelCard extends StatelessWidget {
               ),
             ),
             const Gap(10),
-            Text(place, style: kLargeHeading(context).copyWith(fontSize: 22),maxLines: 2, overflow: TextOverflow.ellipsis,),
+            Text(hotels['address'], style: kLargeHeading(context).copyWith(fontSize: 22),maxLines: 2, overflow: TextOverflow.ellipsis,),
             const Gap(5),
-            Text(destination, style: kSmallText(context),),
+            Text(hotels['country'], style: kSmallText(context),),
             const Gap(5),
             Text('\$$price/night', style: kLargeHeading(context),),
 

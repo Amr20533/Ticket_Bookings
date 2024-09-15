@@ -16,6 +16,12 @@ class FormatHelper{
     return formatter.format(DateTime.parse(time));
   }
 
+  String formattedDate(BuildContext context, String date) {
+    final locale = Localizations.localeOf(context).toString();
+    final formatter = DateFormat('dd/MM/yyy', locale);
+    return formatter.format(DateTime.parse(date));
+  }
+
 
   String getCurrentDate(BuildContext context) {
     final now = DateTime.now();

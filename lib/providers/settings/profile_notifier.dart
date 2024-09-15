@@ -18,6 +18,16 @@ class ProfileNotifier extends ChangeNotifier{
 
   bool isLoggedIn = DataService.sharedPreferences.getBool('isLoggedIn') ?? false;
 
+  DateTime _selectedDate = DateTime.now();
+
+  DateTime get selectedDate => _selectedDate;
+
+  set selectedDate(DateTime date){
+    _selectedDate = date;
+    notifyListeners();
+  }
+
+
 
   bool _isPassword = true;
 
@@ -37,14 +47,20 @@ class ProfileNotifier extends ChangeNotifier{
     notifyListeners();
   }
 
-  int _selectedGender = -1;
+  String _selectedGender = 'NONE';
 
-  int get selectedGender => _selectedGender;
+  String get selectedGender => _selectedGender;
 
-  set selectedGender(int newValue){
+  set selectedGender(String newValue){
     _selectedGender = newValue;
     notifyListeners();
   }
+
+  final List<String> genders = [
+  'male',
+  'female'
+  ];
+
 
 
 
@@ -67,7 +83,7 @@ class ProfileNotifier extends ChangeNotifier{
   Future<dynamic> updateProfile(UpdateProfileModel updateProfileModel) async {
     String? token = DataService.sharedPreferences.getString('userToken');
     try {
-      var passwordData = await helper.postData(
+      var passwordData = await helper.patchData(
         AppEndPoints.userUpdateProfile,
         token: token!,
         body: updateProfileModel.toJson(),
@@ -101,11 +117,11 @@ class ProfileNotifier extends ChangeNotifier{
   Future<dynamic> getUserData() async {
     String? token = DataService.sharedPreferences.getString('userToken');
     try {
-      var profileData = await helper.userGetData(
+      var profileData = await helper.getMyData(
         endPoint: AppEndPoints.userGetProfileData,
         token: token!,
       );
-
+      debugPrint('${profileData}');
       return profileData['data']['data'];
     } catch (e) {
       print('Error fetching user data: $e');

@@ -31,7 +31,11 @@ class AllHotelsView extends StatelessWidget {
                 direction: Axis.horizontal,
                 children: List.generate(_hotels.length, (index) => Container(
                     margin: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(context, 6), vertical: AppLayout.getHeight(context, 6)),
-                    child: HotelCard(width:_width * 0.43,price: _hotels[index]['room'][index]['price'],image: hotels[index]['image'][0] ,destination: _hotels[index]['country'],place: _hotels[index]['address'],)),),
+                    child: HotelCard(width:_width * 0.43,
+                      price: _hotels[index]['room'][index]['price'],
+                      hotels: _hotels[index]
+                    )),
+                ),
               ),
             );
           } else {

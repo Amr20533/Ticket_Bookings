@@ -10,7 +10,7 @@ class UpdateProfileModel {
     this.firstName,
     this.lastName,
     this.email,
-    this.dateOfBirth,
+    // this.dateOfBirth,
     this.phone,
     this.gender,
   });
@@ -18,7 +18,7 @@ class UpdateProfileModel {
   final String? firstName;
   final String? lastName;
   final String? email;
-  final String? dateOfBirth;
+  // final String? dateOfBirth;
   final String? phone;
   final String? gender;
 
@@ -26,7 +26,7 @@ class UpdateProfileModel {
     firstName: json["firstName"],
     lastName: json["lastName"],
     email: json["email"],
-    dateOfBirth: json["dateOfBirth"],
+    // dateOfBirth: json["dateOfBirth"],
     gender: json["gender"],
     phone: json["phone"],
   );
@@ -35,7 +35,7 @@ class UpdateProfileModel {
     "firstName": firstName,
     "lastName": lastName,
     "email": email,
-    "dateOfBirth": dateOfBirth,
+    // "dateOfBirth": dateOfBirth,
     "gender": gender,
     "phone": phone,
   };

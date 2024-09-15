@@ -22,6 +22,8 @@ class AppRoutes{
   static const String pass = '/password-settings';
   static const String account = '/account';
 
+  static const String ticketsDetails = '/details-tickets';
+
   static const String allHotels = '/all-hotels';
   static const String allTickets = '/all-tickets';
   static const String allPhotos = '/all-photos';

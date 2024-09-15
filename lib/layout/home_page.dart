@@ -5,12 +5,9 @@ import 'package:ticket_booking_app/constants.dart';
 import 'package:ticket_booking_app/core/class/app_layout.dart';
 import 'package:ticket_booking_app/core/const/routes.dart';
 import 'package:ticket_booking_app/core/localization/app_localization.dart';
-import 'package:ticket_booking_app/layout/flights/all_flights_view.dart';
-import 'package:ticket_booking_app/layout/hotels/all_hotels_view.dart';
 import 'package:ticket_booking_app/layout/widgets/sliders/hotel_slider.dart';
 import 'package:ticket_booking_app/layout/widgets/sliders/ticket_slider.dart';
 import 'package:ticket_booking_app/layout/widgets/view_all_bar.dart';
-import 'package:ticket_booking_app/providers/hotels_notifier.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
