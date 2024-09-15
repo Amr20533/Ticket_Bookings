@@ -1,6 +1,7 @@
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:provider/provider.dart';
 import 'package:ticket_booking_app/constants.dart';
 import 'package:ticket_booking_app/core/class/app_layout.dart';
 import 'package:ticket_booking_app/core/const/app_assets.dart';
@@ -12,12 +13,17 @@ import 'package:ticket_booking_app/layout/widgets/hotels/custom_photos_slider.da
 import 'package:ticket_booking_app/layout/widgets/hotels/price_and_date_selector.dart';
 import 'package:ticket_booking_app/layout/widgets/search/custom_button.dart';
 import 'package:ticket_booking_app/modules/hotels_features.dart';
+import 'package:ticket_booking_app/layout/payment/payment_view.dart';
+import 'package:ticket_booking_app/providers/hotels_notifier.dart';
 
 class HotelsDetails extends StatelessWidget {
-  const HotelsDetails({super.key});
+  const HotelsDetails({required this.hotels,super.key});
 
+  final dynamic hotels;
   @override
   Widget build(BuildContext context) {
+    final HotelsNotifier hotelsNotifier = Provider.of<HotelsNotifier>(context);
+
     List<HotelsFeature> _features = [
       HotelsFeature(icon: AppAssets.clean,
         title: AppLocalizations.of(context).translate('e-cln'),
@@ -37,7 +43,7 @@ class HotelsDetails extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
+    return hotelsNotifier.paymentGateway.isNotEmpty ? const PaymentView() : Scaffold(
       backgroundColor: kWhiteColor,
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -90,7 +96,7 @@ class HotelsDetails extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(context, 18),),
-              child: Text('Location',style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: Colors.black, fontSize: 24,fontWeight: FontWeight.bold),),
+              child: Text(hotels['address'],style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: Colors.black, fontSize: 24,fontWeight: FontWeight.bold),),
             ),
         
             Padding(
@@ -99,7 +105,7 @@ class HotelsDetails extends StatelessWidget {
                 children: [
                   const Icon(FluentSystemIcons.ic_fluent_location_regular, size: 20,),
                   Gap(AppLayout.getWidth(context, 6)),
-                  Text('Location',style: Theme.of(context).textTheme.titleSmall!.copyWith(color: kGreyColor, fontSize: 14, fontWeight: FontWeight.normal),),
+                  Text(hotels['country'],style: Theme.of(context).textTheme.titleSmall!.copyWith(color: kGreyColor, fontSize: 14, fontWeight: FontWeight.normal),),
                 ],
               ),
             ),
@@ -113,7 +119,7 @@ class HotelsDetails extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(context, 18),vertical: AppLayout.getHeight(context, 8),),
-              child: Text("Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of 'de Finibus Bonorum et Malorum' (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, comes from a line in section 1.10.32."
+              child: Text(hotels['description']
                 ,style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.black, fontSize: 14,fontWeight: FontWeight.normal),
                 maxLines: 3, overflow: TextOverflow.ellipsis,
               ),
@@ -144,7 +150,7 @@ class HotelsDetails extends StatelessWidget {
                 const CustomDivider(),
               ],
             )),
-            const PriceAndDateSelector(),
+            PriceAndDateSelector(id: hotels['_id']),
 
 
           ],

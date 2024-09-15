@@ -40,7 +40,7 @@ class User {
   String? lastName;
   String? email;
   String? photo;
-  int? gender;
+  String? gender;
   int? phoneNumber;
   int? iV;
   String? id;

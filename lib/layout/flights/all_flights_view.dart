@@ -24,13 +24,14 @@ class AllFlightsView extends StatelessWidget {
             } else if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');
             } else if (snapshot.hasData) {
+              print(snapshot.data!);
               List<dynamic> _tickets = snapshot.data!;
               return ListView.separated(
                 itemCount: _tickets.length,
                 scrollDirection: Axis.vertical,
                 physics: const BouncingScrollPhysics(),
                 shrinkWrap: true,
-                itemBuilder: (context, index)=> TicketBox(ticket: _tickets[index],),
+                itemBuilder: (context, index)=> TicketBox(ticket: _tickets[index]),
                 separatorBuilder: (context, _)=> const Gap(20),);
             } else {
               return const Text('No data available');

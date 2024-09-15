@@ -10,6 +10,11 @@ class AppAssets{
   static const String calendar = '$iconsPath/calendar.svg';
   static const String done = '$iconsPath/done.gif';
   static const String done1 = '$iconsPath/done (1).gif';
+  static const String edit = '$iconsPath/edit.svg';
+
+
+  static const String profileAddPhoto = '$iconsPath/edit.svg';
+  static const String profileGalleryIcon = '$iconsPath/edit.svg';
 
 
   static const String nonUser = '$imagesPath/non_user.jpeg';

@@ -7,6 +7,7 @@ import 'package:ticket_booking_app/layout/auth/reset_password.dart';
 import 'package:ticket_booking_app/layout/auth/verify_code_screen.dart';
 import 'package:ticket_booking_app/layout/favorites_page.dart';
 import 'package:ticket_booking_app/layout/flights/all_flights_view.dart';
+import 'package:ticket_booking_app/layout/flights/details_flights.dart';
 import 'package:ticket_booking_app/layout/hotels/all_hotels_view.dart';
 import 'package:ticket_booking_app/layout/hotels/all_photos.dart';
 import 'package:ticket_booking_app/layout/hotels/hotels_details.dart';
@@ -19,6 +20,7 @@ import 'package:ticket_booking_app/layout/widgets/settings/about_screen.dart';
 import 'package:ticket_booking_app/layout/widgets/settings/account_manager.dart';
 import 'package:ticket_booking_app/layout/widgets/settings/help_center.dart';
 import 'package:ticket_booking_app/layout/widgets/settings/privacy_screen.dart';
+import 'package:ticket_booking_app/modules/hotels.dart';
 
 
 Map<String, Widget Function(BuildContext)> pages = {
@@ -44,7 +46,19 @@ Map<String, Widget Function(BuildContext)> pages = {
   AppRoutes.account : (context) => const AccountManager(),
 
   AppRoutes.allTickets : (context) => const AllFlightsView(),
+  AppRoutes.ticketsDetails : (context) => const DetailsFlights(),
+  // {
+  //   final Object flights = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+  //   return DetailsFlights();
+  // },
+
   AppRoutes.allHotels : (context) => AllHotelsView(),
   AppRoutes.allPhotos : (context) => const AllPhotosView(),
-  AppRoutes.hotelsDetails : (context) => const HotelsDetails()
+  AppRoutes.hotelsDetails : (context) {
+    final Object hotels = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    return HotelsDetails(hotels: hotels);
+  }
+
+
+
 };
