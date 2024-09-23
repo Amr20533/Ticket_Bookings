@@ -43,31 +43,31 @@ class HomePage extends StatelessWidget {
           ),
         ),
         Gap(AppLayout.getHeight(context, 25)),
-        Container(
-          height: 45,
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          margin: const EdgeInsets.symmetric(horizontal: 20),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: const Color(0XFFF4F6FD),
-          ),
-          child: Row(
-            children: [
-              const Icon(
-                FluentSystemIcons.ic_fluent_search_regular,
-                color: Color(0XFFBFC205),
-              ),
-              Expanded(
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: AppLocalizations.of(context).translate('home-search'),
-                    border: InputBorder.none,
-                    contentPadding: const EdgeInsets.only(left: 10,right: 10, bottom: 8),
-                  ),
-                  style: Theme.of(context).textTheme.titleSmall,
+        GestureDetector(
+          onTap: (){
+            Navigator.pushNamed(context, AppRoutes.search);
+          },
+          child: Container(
+            height: 45,
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            margin: const EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: const Color(0XFFF4F6FD),
+            ),
+            child: Row(
+              children: [
+                const Icon(
+                  FluentSystemIcons.ic_fluent_search_regular,
+                  color: Color(0XFFBFC205),
                 ),
-              ),
-            ],
+                Expanded(
+                  child: Text(AppLocalizations.of(context).translate('home-search'),
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
 

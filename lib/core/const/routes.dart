@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 
 class AppRoutes{
-  static const String main = '/';
+  static const String start = '/';
+  static const String main = '/main';
   static const String lang = '/language-screen';
   static const String ticketSettings = '/ticket-settings';
 
 
+  static const String authDirector = '/authentication';
   static const String login = '/log-in';
   static const String register = '/register';
   static const String verifyCode = '/verify-code';
   static const String forgotPassword = '/forgot-password';
   static const String resetPassword = '/reset-password';
 
+
+
+  static const String search = '/search';
 
 
   static const String helpCenter = '/help-center';

@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:ticket_booking_app/utils/hero_static/end_points.dart';
 
 class DioHelper{
@@ -48,6 +51,37 @@ class DioHelper{
       } else {
         print("No Data!");
         return response.data['data']['data'];
+      }
+    } on DioException catch (dioError) {
+      print('DioError: ${dioError.response?.data ?? dioError.message}');
+      return [];
+    } catch (e) {
+      print('Error: $e');
+      return [];
+    }
+  }
+
+
+  /// A Method to return data with no ['data']['data'] for a Future dynamic Map as response.data['ticket']
+  Future<dynamic> getBlankData({required String endPoint, required String token}) async {
+    print('Fetching data from ${AppEndPoints.server}/$endPoint');
+    try {
+      final response = await _dio.get(
+        '${AppEndPoints.server}/$endPoint',
+        options: Options(
+          contentType: 'application/json',
+          headers: {
+            'Authorization': 'Bearer $token',
+          },
+        ),
+      );
+      print('Response received: ${response.statusCode}');
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        print('Data: ${response.data}');
+        return response.data;
+      } else {
+        print("No Data!");
+        return response.data;
       }
     } on DioException catch (dioError) {
       print('DioError: ${dioError.response?.data ?? dioError.message}');
@@ -129,32 +163,32 @@ class DioHelper{
     try {
       final response = await _dio.post(
         '${AppEndPoints.server}/$endPoint',
-        data: body,
-        options:Options(
+        data: jsonEncode(body),
+        options: Options(
           contentType: 'application/json',
           headers: {
-            'Authorization' : 'Bearer $token'
+            'Authorization': 'Bearer $token',
           },
         ),
       );
-      print('Response received: ${response.statusCode}');
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        print('POST DATA: ${response.data}');
 
+      print('Response received: ${response.statusCode}');
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        debugPrint('POST DATA: ${response.data}');
         return response.data;
       } else {
         print("No Data!");
         return response.data;
-      }
+    }
     } on DioException catch (dioError) {
       print('DioError: ${dioError.response?.data ?? dioError.message}');
-      return dioError.response?.data;
+      return dioError.response?.data; // Return the error response
     } catch (e) {
       print('Error: $e');
-      return e;
+      return e; // Return the error
     }
   }
-
 
   Future<dynamic> patchData(String endPoint, {required String token, required Map<String, dynamic> body}) async {
     print('PATCH DATA to $endPoint');

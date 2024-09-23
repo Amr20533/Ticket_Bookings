@@ -49,18 +49,28 @@ class PriceAndDateSelector extends StatelessWidget {
   }
   void _bookRoom({required HotelsNotifier hotelsNotifier}){
     RoomBookingModel roomBookingModel = RoomBookingModel(
-      hotelId: id,
+      hotelId: '668b36edaa8e664a9cde39a8',
       roomType: 'single',
       startDate: '2024-11-24',
       endDate: '2024-11-26',
     );
     hotelsNotifier.userBookARoom(roomBookingModel).then((roomStatus){
-      debugPrint("Status:: $roomStatus");
-      if(roomStatus['status'] == 'success'){
+      debugPrint("Status:: ${roomStatus.toJson()}");
+      if(roomStatus.status == 'success'){
         debugPrint('created a room success');
-        hotelsNotifier.paymentGateway = roomStatus['paymentGateway'];
+        if (roomStatus.paymentGateway.length > 1085) {
+          hotelsNotifier.paymentGateway = roomStatus.paymentGateway.substring(0, 1085);
+        } else {
+          hotelsNotifier.paymentGateway = roomStatus.paymentGateway; // Use the full string if it's shorter
+        }
+        String paymentGatewayTrimmed = hotelsNotifier.paymentGateway.trim();
 
-        print('Payment GateWay --> ${hotelsNotifier.paymentGateway}');
+        print('Payment GateWay --> ${hotelsNotifier.paymentGateway.length}\n ${hotelsNotifier.paymentGateway}');
+        print('Payment Gateway Trimmed --> $paymentGatewayTrimmed');
+
+        String hh = roomStatus.paymentGateway.substring(0, roomStatus.paymentGateway.length);
+        print('Hh $hh');
+
       }else{
         debugPrint('Error While Booking a room :(');
       }
