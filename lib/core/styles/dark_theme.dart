@@ -23,6 +23,14 @@ ThemeData get darkTheme {
             fontSize: 22,fontWeight:FontWeight.w600
         ),
       ),
+      appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.black,
+          elevation: 0,
+          iconTheme: IconThemeData(
+              size: 20,
+              color: Colors.white
+          )
+      ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Colors.black,
       selectedIconTheme: IconThemeData(

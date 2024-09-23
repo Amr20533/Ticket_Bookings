@@ -1,7 +1,6 @@
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:ticket_booking_app/core/styles/dark_theme.dart';
-import 'package:ticket_booking_app/core/styles/light_theme.dart';
+import 'package:ticket_booking_app/layout/favorites_page.dart';
 import 'package:ticket_booking_app/layout/home_page.dart';
 import 'package:ticket_booking_app/layout/profile_page.dart';
 import 'package:ticket_booking_app/layout/search_page.dart';
@@ -9,16 +8,8 @@ import 'package:ticket_booking_app/layout/ticket_page.dart';
 
 class HomeNotifier extends ChangeNotifier{
   int _curPage = 0;
-  bool _isDarkMode = false;
 
-  bool get isDarkMode => _isDarkMode;
 
-  Locale _locale = const Locale('en');
-
-  List<Locale> locales = const[
-    Locale('en', ''),
-    Locale('ar', ''),
-  ];
  List<Widget> screens = [
     HomePage(),
     SearchPage(),
@@ -42,18 +33,5 @@ class HomeNotifier extends ChangeNotifier{
 
 
 
-  ThemeData get currentTheme => _isDarkMode ? darkTheme : lightTheme;
 
-  void toggleTheme() {
-    _isDarkMode = !_isDarkMode;
-    notifyListeners();
-  }
-
-
-  Locale get locale => _locale;
-
-  void setLocale(Locale locale) {
-    _locale = locale;
-    notifyListeners();
-  }
 }

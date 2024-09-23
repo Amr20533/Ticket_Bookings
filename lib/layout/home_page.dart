@@ -1,18 +1,22 @@
+import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:gap/gap.dart';
 import 'package:ticket_booking_app/constants.dart';
-import 'package:ticket_booking_app/providers/home_provider.dart';
+import 'package:ticket_booking_app/core/class/app_layout.dart';
+import 'package:ticket_booking_app/core/const/routes.dart';
+import 'package:ticket_booking_app/core/localization/app_localization.dart';
+import 'package:ticket_booking_app/layout/widgets/sliders/hotel_slider.dart';
+import 'package:ticket_booking_app/layout/widgets/sliders/ticket_slider.dart';
+import 'package:ticket_booking_app/layout/widgets/view_all_bar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final homeNotifier = Provider.of<HomeNotifier>(context);
-
-    return ListView(
-      // crossAxisAlignment: CrossAxisAlignment.start,
+      return ListView(
       children: [
+        Gap(AppLayout.getHeight(context, 40)),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
@@ -21,8 +25,8 @@ class HomePage extends StatelessWidget {
                 children: [
                   Column(crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Good Morning", style:Theme.of(context).textTheme.titleLarge),
-                      Text("Book Tickets", style:Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 22, fontWeight: FontWeight.w600)),
+                      Text(AppLocalizations.of(context).translate('home-greeting'), style:Theme.of(context).textTheme.titleSmall),
+                      Text(AppLocalizations.of(context).translate('home-book'), style:Theme.of(context).textTheme.headlineSmall),
 
                     ],
                   ),
@@ -38,21 +42,53 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        Container(color: Colors.red,
-          child: Column(
-            children: [
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("mfaf", style:Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 22, fontWeight: FontWeight.w600)),
-                  TextButton(onPressed: (){
-                    homeNotifier.toggleTheme();
-                  }, child: Text("See All", style:Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 14))),
-                ],
-              ),
-            ],
+        Gap(AppLayout.getHeight(context, 25)),
+        GestureDetector(
+          onTap: (){
+            Navigator.pushNamed(context, AppRoutes.search);
+          },
+          child: Container(
+            height: 45,
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            margin: const EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: const Color(0XFFF4F6FD),
+            ),
+            child: Row(
+              children: [
+                const Icon(
+                  FluentSystemIcons.ic_fluent_search_regular,
+                  color: Color(0XFFBFC205),
+                ),
+                Expanded(
+                  child: Text(AppLocalizations.of(context).translate('home-search'),
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                ),
+              ],
+            ),
           ),
-        )
+        ),
+
+        Gap(AppLayout.getHeight(context, 35)),
+        ViewAllBar(onTap: (){
+          Navigator.pushNamed(context, AppRoutes.allTickets);
+
+        },title: AppLocalizations.of(context).translate('flights'),),
+        TicketSlider(),
+        Gap(AppLayout.getHeight(context, 16)),
+        ViewAllBar(onTap: (){
+          Navigator.pushNamed(context, AppRoutes.allHotels);
+        },title: AppLocalizations.of(context).translate('hls'),),
+        Gap(AppLayout.getHeight(context, 16)),
+        HotelSlider(),
+
+
+
       ],
     );
   }
 }
+
+

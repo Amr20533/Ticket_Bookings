@@ -12,17 +12,29 @@ ThemeData get lightTheme {
           fontSize: 22,fontWeight:FontWeight.w600
         ),
         titleMedium: TextStyle(
-          color: kLightThemeTextColor,
-          fontSize: 22,fontWeight:FontWeight.w600
+          color: Colors.black,
+          fontSize: 16,fontWeight:FontWeight.w600
         ),
         titleSmall: TextStyle(
-          color: kLightThemeTextColor,
-          fontSize: 18,fontWeight:FontWeight.w400
+          color: Colors.grey,
+          fontSize: 14,fontWeight:FontWeight.w400
         ),
         headlineSmall: TextStyle(
           color: kLightThemeTextColor,
-          fontSize: 22,fontWeight:FontWeight.w600
+          fontSize: 26,fontWeight:FontWeight.bold
         ),
+        headlineLarge: TextStyle(
+          color: Colors.black,
+          fontSize: 38,fontWeight:FontWeight.bold
+        ),
+      ),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: kBackgroundColor,
+        elevation: 0,
+        iconTheme: IconThemeData(
+          size: 20,
+          color: Colors.black
+        )
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           selectedIconTheme: IconThemeData(
