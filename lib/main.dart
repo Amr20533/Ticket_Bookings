@@ -7,7 +7,7 @@ import 'package:ticket_booking_app/providers/flights_notifier.dart';
 import 'package:ticket_booking_app/providers/home_provider.dart';
 import 'package:ticket_booking_app/providers/hotels_notifier.dart';
 import 'package:ticket_booking_app/providers/language_notifier.dart';
-import 'package:ticket_booking_app/providers/search_notifier.dart';
+import 'package:ticket_booking_app/providers/search/search_notifier.dart';
 import 'package:ticket_booking_app/providers/settings/profile_notifier.dart';
 import 'package:ticket_booking_app/providers/start/start_page_notifier.dart';
 import 'package:ticket_booking_app/utils/helpers/dataService.dart';

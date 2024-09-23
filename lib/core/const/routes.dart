@@ -16,6 +16,9 @@ class AppRoutes{
 
 
 
+  static const String search = '/search';
+
+
   static const String helpCenter = '/help-center';
   static const String privacy = '/privacy-policy';
   static const String about = '/about';

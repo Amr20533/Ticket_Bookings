@@ -12,7 +12,7 @@ import 'package:ticket_booking_app/layout/widgets/ticket/custom_ticket_divider.d
 import 'package:ticket_booking_app/layout/widgets/ticket/side_black_handles.dart';
 import 'package:ticket_booking_app/layout/widgets/ticket/ticket_upper_part.dart';
 import 'package:ticket_booking_app/layout/widgets/ticket_box.dart';
-import 'package:ticket_booking_app/providers/search_notifier.dart';
+import 'package:ticket_booking_app/providers/search/search_notifier.dart';
 
 class UserTicketView extends StatelessWidget {
   const UserTicketView({

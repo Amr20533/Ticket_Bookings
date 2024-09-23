@@ -13,6 +13,7 @@ import 'package:ticket_booking_app/layout/hotels/all_hotels_view.dart';
 import 'package:ticket_booking_app/layout/hotels/all_photos.dart';
 import 'package:ticket_booking_app/layout/hotels/hotels_details.dart';
 import 'package:ticket_booking_app/layout/mainView.dart';
+import 'package:ticket_booking_app/layout/search/search_view.dart';
 import 'package:ticket_booking_app/layout/settings/language_screen.dart';
 import 'package:ticket_booking_app/layout/settings/password_settings.dart';
 import 'package:ticket_booking_app/layout/settings/ticket_settings_page.dart';
@@ -38,6 +39,9 @@ Map<String, Widget Function(BuildContext)> pages = {
   AppRoutes.forgotPassword : (context) =>  const ForgotPasswordScreen(),
   AppRoutes.verifyCode : (context) =>  const VerifyCodeScreen(),
   AppRoutes.resetPassword : (context) =>  const ResetPasswordScreen(),
+
+  ///  ---------------------------  Search Routes ------------------------------
+  AppRoutes.search : (context) => const SearchView(),
 
 
   ///  ---------------------------  Profile Routes ------------------------------

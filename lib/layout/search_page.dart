@@ -10,7 +10,7 @@ import 'package:ticket_booking_app/layout/widgets/search/custom_filter_box.dart'
 import 'package:ticket_booking_app/layout/widgets/search/custom_upcomin_flights.dart';
 import 'package:ticket_booking_app/layout/widgets/view_all_bar.dart';
 import 'package:ticket_booking_app/providers/language_notifier.dart';
-import 'package:ticket_booking_app/providers/search_notifier.dart';
+import 'package:ticket_booking_app/providers/search/search_notifier.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
