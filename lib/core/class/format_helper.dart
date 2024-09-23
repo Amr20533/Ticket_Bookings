@@ -29,6 +29,12 @@ class FormatHelper{
     final formatter = DateFormat('d MMMM', locale);
     return formatter.format(now);
   }
+
+  String departureDateFormat(BuildContext context, {required DateTime date}) {
+    final locale = Localizations.localeOf(context).toString();
+    final formatter = DateFormat('d MMMM', locale);
+    return formatter.format(date);
+  }
   String getSecondaryDate(BuildContext context) {
     final now = DateTime.now();
     final locale = Localizations.localeOf(context).toString();

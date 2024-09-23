@@ -6,6 +6,7 @@ import 'package:ticket_booking_app/layout/widgets/hotel_card.dart';
 import 'package:ticket_booking_app/modules/hotels.dart';
 import 'package:ticket_booking_app/providers/hotels_notifier.dart';
 import 'package:ticket_booking_app/providers/language_notifier.dart';
+import 'package:ticket_booking_app/utils/hero_static/end_points.dart';
 
 class HotelSlider extends StatelessWidget {
   const HotelSlider({super.key});
@@ -25,6 +26,7 @@ class HotelSlider extends StatelessWidget {
           return Text('Error: ${snapshot.error}');
         } else if (snapshot.hasData) {
           List<dynamic> _hotels = snapshot.data!;
+          debugPrint('Length --> ${_hotels.length}');
           return Container(
             height: AppLayout.getHeight(context, 320),
             padding: isRTL ? const EdgeInsets.only(right: 16) : const EdgeInsets.only(left: 16),
@@ -34,7 +36,8 @@ class HotelSlider extends StatelessWidget {
               shrinkWrap: true,itemBuilder: (context, index)=> HotelCard(
               width:_width * 0.5,
               price: _hotels[index]['room'][index]['price'],
-              hotels: _hotels[index]
+              hotels: _hotels[index],
+              image: '${_hotels[4]['images'][0]}'
             ),
               separatorBuilder: (context, _)=> const Gap(20),),
           );

@@ -3,17 +3,20 @@ import 'package:gap/gap.dart';
 import 'package:ticket_booking_app/constants.dart';
 import 'package:ticket_booking_app/core/class/app_layout.dart';
 import 'package:ticket_booking_app/core/const/routes.dart';
+import 'package:ticket_booking_app/utils/hero_static/end_points.dart';
 
 class HotelCard extends StatelessWidget {
   const HotelCard({
     required this.price,
     required this.hotels,
     required this.width,
+    required this.image,
     super.key,
   });
   final dynamic hotels;
   final double width;
   final int price;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +27,8 @@ class HotelCard extends StatelessWidget {
         Navigator.pushNamed(context, AppRoutes.hotelsDetails,
           arguments: hotels,
         );
+        // Navigator.push(context, MaterialPageRoute(builder: (context) => HotelsDetails(hotels: hotels)));
+
       },
       child: Container(
         width: width,
@@ -39,10 +44,10 @@ class HotelCard extends StatelessWidget {
               width: _width * 0.5,
               height: _height * 0.2,
               decoration:BoxDecoration(
-                image: const DecorationImage(
+                image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage(
-                    'assets/image/first.jpg',
+                  image: NetworkImage(
+                    '${AppEndPoints.server}/img/$image',
                   )
                 ),
                 // color: Colors.redAccent,

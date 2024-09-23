@@ -9,6 +9,7 @@ import 'package:ticket_booking_app/providers/hotels_notifier.dart';
 import 'package:ticket_booking_app/providers/language_notifier.dart';
 import 'package:ticket_booking_app/providers/search_notifier.dart';
 import 'package:ticket_booking_app/providers/settings/profile_notifier.dart';
+import 'package:ticket_booking_app/providers/start/start_page_notifier.dart';
 import 'package:ticket_booking_app/utils/helpers/dataService.dart';
 import 'package:ticket_booking_app/utils/hero_static/pages.dart';
 
@@ -27,6 +28,7 @@ void main() async{
         ChangeNotifierProvider(create: (context) => LoginNotifier()),
         ChangeNotifierProvider(create: (context) => RegisterNotifier()),
         ChangeNotifierProvider(create: (context) => ForgotPasswordNotifier()),
+        ChangeNotifierProvider(create: (context) => StartPageNotifier()),
         ChangeNotifierProvider(create: (context) => ProfileNotifier()),
       ],
       child: const MyApp(),

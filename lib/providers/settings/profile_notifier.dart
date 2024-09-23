@@ -16,8 +16,6 @@ class ProfileNotifier extends ChangeNotifier{
   late TextEditingController dateOfBirthController;
   late TextEditingController confirmPasswordController;
 
-  bool isLoggedIn = DataService.sharedPreferences.getBool('isLoggedIn') ?? false;
-
   DateTime _selectedDate = DateTime.now();
 
   DateTime get selectedDate => _selectedDate;
