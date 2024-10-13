@@ -1,6 +1,7 @@
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:provider/provider.dart';
 import 'package:ticket_booking_app/layout/flights/flights_exports.dart';
 
 class UserCreatedTicket extends StatelessWidget {
@@ -9,16 +10,17 @@ class UserCreatedTicket extends StatelessWidget {
     required double width,
     required double height,
     required this.flight,
-    required this.profileNotifier,
   }) : _width = width, _height = height;
 
   final double _width;
   final double _height;
   final dynamic flight;
-  final ProfileNotifier profileNotifier;
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<ProfileNotifier>(context).getUserData();
+    final profileNotifier = Provider.of<ProfileNotifier>(context);
+    final flightNotifier = Provider.of<FlightsNotifier>(context);
     return Stack(alignment: Alignment.center,
       children: [
         Container(
@@ -95,7 +97,7 @@ class UserCreatedTicket extends StatelessWidget {
                     CustomTicketBox(title: TicketsFormatter().formatTicketId(FlightResponseModel.fromJson(flight).plane!),secTitle: "B2SG2B",subTitle:AppLocalizations.of(context).translate('n-f-tk') ,secSubTitle: AppLocalizations.of(context).translate('bk-cd')),
                     CustomTicketDivider(width: _width),
 
-                    CustomTicketBox(title: " *** 2462",secTitle: "\$${FlightResponseModel.fromJson(flight).prices!.economy}",subTitle:AppLocalizations.of(context).translate('pt-mtd') ,secSubTitle: AppLocalizations.of(context).translate('pr'), isPrice: true),
+                    CustomTicketBox(title: " *** 2462",secTitle: "\$${_getPrice(flightNotifier.selectedSeatClass.toLowerCase(), FlightResponseModel.fromJson(flight).prices!)}",subTitle:AppLocalizations.of(context).translate('pt-mtd') ,secSubTitle: AppLocalizations.of(context).translate('pr'), isPrice: true),
                     Gap(AppLayout.getHeight(context, 16)),
                     Divider(height:1, color: kLightGreyColor.withOpacity(0.3),),
                     Gap(AppLayout.getHeight(context, 16)),
@@ -129,4 +131,18 @@ class UserCreatedTicket extends StatelessWidget {
       ],
     );
   }
-}
+  int? _getPrice(String priceValue, Prices prices){
+    if(priceValue == "economy"){
+      return prices.economy!;
+  }
+    else if(priceValue == "business"){
+      return prices.economy!;
+  }
+    else if(priceValue == "first class"){
+      return prices.firstClass!;
+  }
+    else {
+      return 0;
+  }
+    }
+  }

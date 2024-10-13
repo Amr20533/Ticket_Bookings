@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:ticket_booking_app/models/tickets/ticket_model.dart';
 import 'package:ticket_booking_app/models/tickets/tickets_booking_response_model.dart';
@@ -75,14 +76,26 @@ class FlightsNotifier extends ChangeNotifier{
   }
 
   Future<TicketsBookingResponseModel> userTakeFlightTicket(TicketModel ticketModel) async {
-    var ticketResponseData = await helper.postData(
-      AppEndPoints.createFlightTicket,
-      body: ticketModel.toJson(),
-      token: DataService.sharedPreferences.getString('userToken')!,
-    );
+    try {
+      var ticketResponseData = await helper.postData(
+        AppEndPoints.createFlightTicket,
+        body: ticketModel.toJson(),
+        token: DataService.sharedPreferences.getString('userToken')!,
+      );
 
-    TicketsBookingResponseModel tickets = TicketsBookingResponseModel.fromJson(ticketResponseData);
-    return tickets;
+      if (ticketResponseData['status'] == 'fail') {
+        throw Exception(ticketResponseData['message']);
+      }
+
+      return TicketsBookingResponseModel.fromJson(ticketResponseData);
+    } catch (e) {
+      if (e is DioError) {
+        debugPrint('DioError: ${e.response?.data}');
+        throw Exception('Network error: ${e.message}');
+      } else {
+        throw Exception('An unexpected error occurred: $e');
+      }
+    }
   }
 
   FlightsNotifier(){

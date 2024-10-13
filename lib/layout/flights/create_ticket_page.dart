@@ -1,4 +1,3 @@
-import 'package:barcode_widget/barcode_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
@@ -15,19 +14,19 @@ class CreateTicketPage extends StatelessWidget {
   Widget build(BuildContext context) {
     double _width = AppLayout.getScreenWidth(context);
     double _height = AppLayout.getScreenHeight(context);
-    final profileNotifier = Provider.of<ProfileNotifier>(context);
     final flightsNotifier = Provider.of<FlightsNotifier>(context);
     return flightsNotifier.paymentGateway.isEmpty ? Scaffold(
       appBar: customDetailsAppBar(context, title: AppLocalizations.of(context).translate("ur-ticket")),
       body: SafeArea(
         child: Column(
           children: [
-            UserCreatedTicket(width: _width, height: _height, flight: flight, profileNotifier: profileNotifier),
+            Gap(AppLayout.getHeight(context, 12)),
+            UserCreatedTicket(width: _width, height: _height, flight: flight),
             const Spacer(flex: 1,),
             Padding(
               padding: EdgeInsets.only(bottom: AppLayout.getHeight(context, 20)),
               child: CustomButton(onPressed: (){
-                _payForTicket(flightsNotifier: flight);
+                _payForTicket(flightsNotifier: flightsNotifier);
               }, width: AppLayout.getWidth(context, 350),
                   height: AppLayout.getHeight(context, 45),
                   title: AppLocalizations.of(context).translate("pay-now"),
@@ -43,9 +42,10 @@ class CreateTicketPage extends StatelessWidget {
   void _payForTicket({required FlightsNotifier flightsNotifier}){
     TicketModel ticketModel = TicketModel(
       flight: flightsNotifier.flightId,
-      seatClass: flightsNotifier.selectedSeatClass,
+      seatClass: flightsNotifier.selectedSeatClass.toLowerCase(),
       type: flightsNotifier.selectedSeat
     );
+    debugPrint("${ticketModel.toJson()}");
     flightsNotifier.userTakeFlightTicket(ticketModel).then((ticketStatus){
       if(ticketStatus.status == 'success'){
         debugPrint('Booked a Flight success');

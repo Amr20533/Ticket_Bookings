@@ -33,11 +33,12 @@ void buildFlightBottomSheet(BuildContext context, {required Map<String,dynamic> 
                     padding: EdgeInsets.only(bottom: AppLayout.getHeight(context, 16)),
                     child: CustomButton(
                     onPressed: (){
-                      debugPrint("Selected Trip: ${flightNotifier.selectedSeat} \n Selected Seat Class: ${flightNotifier.selectedSeatClass}");
-                      Navigator.of(context).pushNamed(AppRoutes.ticketCreate);
+                      flightNotifier.flightId = FlightResponseModel.fromJson(flight).sId!;
+                      debugPrint("flight Id: ${flightNotifier.flightId}\nSelected Trip: ${flightNotifier.selectedSeat} \n Selected Seat Class: ${flightNotifier.selectedSeatClass}");
+                      Navigator.of(context).pushNamed(AppRoutes.ticketCreate, arguments: flight);
                     }, width: AppLayout.getWidth(context, 350),
                       height: AppLayout.getHeight(context, 50),
-                      title: AppLocalizations.of(context).translate("ur_ticket"),
+                      title: AppLocalizations.of(context).translate("ur-ticket"),
                       // title: AppLocalizations.of(context).translate("view_ticket"),
                     ),),
                   ],

@@ -12,6 +12,9 @@ import 'package:ticket_booking_app/layout/widgets/settings/custom_settings_tile.
 import 'package:ticket_booking_app/providers/settings/language_notifier.dart';
 import 'package:ticket_booking_app/providers/settings/profile_notifier.dart';
 import 'package:ticket_booking_app/utils/hero_static/custom_page_transition.dart';
+import 'package:ticket_booking_app/utils/hero_static/end_points.dart';
+
+import '../../../models/profile/profile_data.dart';
 
 class CustomProfileView extends StatelessWidget {
   const CustomProfileView({
@@ -51,6 +54,9 @@ class CustomProfileView extends StatelessWidget {
             child: CircleAvatar(
             radius: AppLayout.getWidth(context, 25),
             backgroundColor: Colors.red,
+              backgroundImage: NetworkImage(
+                '${AppEndPoints.server}/img/${SubData.fromJson(data).photo}',
+              ),
           ),
         ),
           Padding(
@@ -59,8 +65,8 @@ class CustomProfileView extends StatelessWidget {
           children: [
             Column(crossAxisAlignment: CrossAxisAlignment.start,mainAxisSize: MainAxisSize.min,
             children: [
-              Text("${data['firstName']} ${data['lastName']}", style:Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white, fontSize: 18), maxLines: 1, overflow: TextOverflow.ellipsis,),
-              Text("${data['email']}", style:Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white54, fontSize: 12), maxLines: 1, overflow: TextOverflow.ellipsis,),
+              Text("${SubData.fromJson(data).firstName} ${SubData.fromJson(data).lastName}", style:Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white, fontSize: 18), maxLines: 1, overflow: TextOverflow.ellipsis,),
+              Text("${SubData.fromJson(data).email}", style:Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white54, fontSize: 12), maxLines: 1, overflow: TextOverflow.ellipsis,),
             ],
           ),
             SizedBox(width: AppLayout.getWidth(context, 85)),

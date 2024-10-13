@@ -141,6 +141,25 @@
   "one_way": "one-way",
   "round_trip": "round-trip",
   "view_ticket": "View Ticket",
-  "flight_detail": "Flight Details"
-
+  "flight_detail": "Flight Details",
+  "login_success": "Login successful! Welcome back.",
+  "login_failure": "Login failed. Please check your credentials and try again.",
+  "login_offline": "You are currently offline. Please check your internet connection.",
+  "login_loading": "Logging you in, please wait...",
+  "login_pending": "Your login request is pending. Please wait.",
+  "login_cancelled": "Login request has been cancelled.",
+  "login_timeout": "Login request timed out. Please try again.",
+  "login_invalid_response": "Received an invalid response. Please try again.",
+  "login_authentication_required": "Authentication required. Please log in.",
+  "login_unexpected_error": "An unexpected error occurred. Please try again.",
+  "register_success": "Registration successful! Welcome aboard.",
+  "register_failure": "Registration failed. Please check your details and try again.",
+  "register_email_exists": "This email is already registered. Please use a different email.",
+  "register_password_mismatch": "Passwords do not match. Please try again.",
+  "register_loading": "Registering you, please wait...",
+  "register_pending": "Your registration request is pending. Please wait.",
+  "register_cancelled": "Registration request has been cancelled.",
+  "register_timeout": "Registration request timed out. Please try again.",
+  "register_invalid_response": "Received an invalid response. Please try again.",
+  "register_unexpected_error": "An unexpected error occurred. Please try again."
 }

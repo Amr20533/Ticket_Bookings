@@ -130,6 +130,7 @@ class ProfileNotifier extends ChangeNotifier{
       );
 
       debugPrint('Profile data: $profileData');
+      debugPrint('Token: $token');
 
       if (profileData['data'] != null) {
         myProfile = profileData['data']['data'];

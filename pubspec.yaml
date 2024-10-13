@@ -26,6 +26,7 @@ dependencies:
   flutter_otp_text_field:
   webview_flutter:
   lottie:
+  toastification:
 
 dev_dependencies:
   flutter_test:
