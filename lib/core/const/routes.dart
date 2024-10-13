@@ -30,6 +30,7 @@ class AppRoutes{
   static const String failedBooking = '/failed-booking';
 
   static const String ticketsDetails = '/details-tickets';
+  static const String ticketCreate = '/ticket-create';
 
   static const String allHotels = '/all-hotels';
   static const String allTickets = '/all-tickets';

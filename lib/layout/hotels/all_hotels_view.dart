@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ticket_booking_app/core/class/app_layout.dart';
 import 'package:ticket_booking_app/core/localization/app_localization.dart';
-import 'package:ticket_booking_app/layout/widgets/custom_details_app_bar.dart';
-import 'package:ticket_booking_app/layout/widgets/hotel_card.dart';
+import 'package:ticket_booking_app/layout/widgets/common/custom_details_app_bar.dart';
+import 'package:ticket_booking_app/layout/widgets/hotels/hotel_card.dart';
 import 'package:ticket_booking_app/modules/hotels.dart';
 import 'package:ticket_booking_app/providers/hotels_notifier.dart';
 import 'package:ticket_booking_app/utils/hero_static/end_points.dart';

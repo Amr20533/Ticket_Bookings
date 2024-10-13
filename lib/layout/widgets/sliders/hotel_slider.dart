@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:ticket_booking_app/core/class/app_layout.dart';
-import 'package:ticket_booking_app/layout/widgets/hotel_card.dart';
+import 'package:ticket_booking_app/layout/widgets/hotels/hotel_card.dart';
 import 'package:ticket_booking_app/modules/hotels.dart';
 import 'package:ticket_booking_app/providers/hotels_notifier.dart';
-import 'package:ticket_booking_app/providers/language_notifier.dart';
+import 'package:ticket_booking_app/providers/settings/language_notifier.dart';
 import 'package:ticket_booking_app/utils/hero_static/end_points.dart';
 
 class HotelSlider extends StatelessWidget {

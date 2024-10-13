@@ -6,7 +6,7 @@ import 'package:ticket_booking_app/core/localization/app_localization.dart';
 import 'package:ticket_booking_app/layout/widgets/search/custom_filter_box.dart';
 import 'package:ticket_booking_app/layout/widgets/ticket/user_ticket_view.dart';
 import 'package:ticket_booking_app/models/tickets/retreived_tickets_response_model.dart';
-import 'package:ticket_booking_app/providers/flights_notifier.dart';
+import 'package:ticket_booking_app/providers/features/flights_notifier.dart';
 import 'package:ticket_booking_app/providers/search/search_notifier.dart';
 
 class TicketPage extends StatelessWidget {

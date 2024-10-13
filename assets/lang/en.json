@@ -1,12 +1,12 @@
 {
   "home-greeting": "Good Morning",
-  "home-title": "Light and Dark Theme Example",
   "home-book": "Book Tickets",
   "home-search": "Search",
   "home-number": "Number",
   "home-date": "Date",
   "home-dep-t": "Departure Time",
   "flights": "Upcoming Flights",
+  "flight": "Flight",
   "all-flights": "All Flights",
   "hls": "Hotels",
   "all-hls": "All Hotels",
@@ -129,6 +129,18 @@
   "confirmed-book": "Congratulations \nYour book has been confirmed",
   "payment-received": "Payment Received \nSuccessfully",
   "payment-failed": "Payment Failed!",
-  "book-failed": "Your booking could not be completed.\nPlease try again later or check your details."
+  "book-failed": "Your booking could not be completed.\nPlease try again later or check your details.",
+  "pay-now": "Pay Now",
+  "create-ticket": "Create a Ticket",
+  "ur-ticket": "Your Ticket",
+  "select-trip": "Select a trip",
+  "select-price": "Select a price",
+  "economy": "Economy",
+  "business": "Business",
+  "first-class": "First Class",
+  "one_way": "one-way",
+  "round_trip": "round-trip",
+  "view_ticket": "View Ticket",
+  "flight_detail": "Flight Details"
 
 }

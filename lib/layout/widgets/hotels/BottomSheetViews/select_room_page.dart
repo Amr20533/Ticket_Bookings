@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:ticket_booking_app/constants.dart';
 import 'package:ticket_booking_app/core/class/app_layout.dart';
+import 'package:ticket_booking_app/layout/widgets/hotels/build_room_type_option.dart';
 import 'package:ticket_booking_app/layout/widgets/search/custom_button.dart';
 import 'package:ticket_booking_app/models/Booking/room_booking_model.dart';
 import 'package:ticket_booking_app/providers/hotels_notifier.dart';
@@ -13,7 +13,6 @@ class SelectRoomPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final HotelsNotifier hotelsNotifier = Provider.of<HotelsNotifier>(context);
     return Consumer<HotelsNotifier>(
         builder: (context, hotel, _){
           return SizedBox(
@@ -21,7 +20,7 @@ class SelectRoomPage extends StatelessWidget {
             child: Column(
               children: [
 
-                _buildRoomTypeOption(
+                buildRoomTypeOption(
                   context,
                   onTap: (){
                     hotel.selectedRoom = "Single";
@@ -29,7 +28,7 @@ class SelectRoomPage extends StatelessWidget {
                     roomType: "Single",
                     hotelsNotifier: hotel
                 ),
-                _buildRoomTypeOption(
+                buildRoomTypeOption(
                     context,
                     onTap: (){
                     hotel.selectedRoom = "Double";
@@ -53,25 +52,6 @@ class SelectRoomPage extends StatelessWidget {
     );
   }
 
-  Widget _buildRoomTypeOption(BuildContext context,{required String roomType, required HotelsNotifier hotelsNotifier, required VoidCallback onTap}) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Row(
-        children: [
-          Checkbox(
-            value: hotelsNotifier.selectedRoom == roomType,
-            activeColor: kPrimaryColor,
-            onChanged: (bool? isChecked) {
-              if (isChecked == true) {
-                hotelsNotifier.selectedRoom = roomType;
-              }
-            },
-          ),
-          Text(roomType, style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black),),
-        ],
-      ),
-    );
-  }
   void _bookRoom({required HotelsNotifier hotelsNotifier}){
     RoomBookingModel roomBookingModel = RoomBookingModel(
       hotelId: hotelsNotifier.hotelId,

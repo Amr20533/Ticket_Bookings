@@ -1,16 +1,15 @@
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:ticket_booking_app/layout/favorites_page.dart';
-import 'package:ticket_booking_app/layout/home_page.dart';
-import 'package:ticket_booking_app/layout/profile_page.dart';
-import 'package:ticket_booking_app/layout/search_page.dart';
-import 'package:ticket_booking_app/layout/ticket_page.dart';
+import 'package:ticket_booking_app/layout/primary_interfaces/home_page.dart';
+import 'package:ticket_booking_app/layout/primary_interfaces/search_page.dart';
+import 'package:ticket_booking_app/layout/settings/account/profile_page.dart';
+import 'package:ticket_booking_app/layout/primary_interfaces/ticket_page.dart';
 
 class HomeNotifier extends ChangeNotifier{
   int _curPage = 0;
 
 
- List<Widget> screens = [
+ List<Widget> screens = const [
     HomePage(),
     SearchPage(),
     TicketPage(),

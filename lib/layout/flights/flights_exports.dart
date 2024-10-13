@@ -1,0 +1,16 @@
+export 'package:ticket_booking_app/constants.dart';
+export 'package:ticket_booking_app/core/class/app_layout.dart';
+export 'package:ticket_booking_app/core/class/format_helper.dart';
+export 'package:ticket_booking_app/core/localization/app_localization.dart';
+export 'package:ticket_booking_app/layout/widgets/common/custom_details_app_bar.dart';
+export 'package:ticket_booking_app/layout/widgets/search/custom_button.dart';
+export 'package:ticket_booking_app/layout/widgets/ticket/custom_ticket_box.dart';
+export 'package:ticket_booking_app/layout/widgets/ticket/custom_ticket_divider.dart';
+export 'package:ticket_booking_app/layout/widgets/ticket/side_black_handles.dart';
+export 'package:ticket_booking_app/layout/widgets/ticket/ticket_upper_part.dart';
+export 'package:ticket_booking_app/models/Flight/flight_model.dart';
+export 'package:ticket_booking_app/models/profile/profile_data.dart';
+export 'package:ticket_booking_app/models/tickets/ticket_model.dart';
+export 'package:ticket_booking_app/providers/features/flights_notifier.dart';
+export 'package:ticket_booking_app/providers/settings/profile_notifier.dart';
+export 'package:ticket_booking_app/utils/helpers/tickets_formatter.dart';

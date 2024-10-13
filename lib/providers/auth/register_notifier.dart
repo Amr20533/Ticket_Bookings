@@ -52,18 +52,6 @@ class RegisterNotifier extends ChangeNotifier{
     return registerData;
   }
 
-
-  void userLogout() async {
-    _isLoggedIn = DataService.setData(key: 'isLoggedIn', value: false);
-    DataService.removeData(key: 'userToken');
-    DataService.removeData(key: 'userId');
-  }
-
-
-
-
-
-
   RegisterNotifier(){
 
     emailController = TextEditingController();

@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:ticket_booking_app/constants.dart';
 import 'package:ticket_booking_app/core/class/app_layout.dart';
 import 'package:ticket_booking_app/core/localization/app_localization.dart';
-import 'package:ticket_booking_app/providers/language_notifier.dart';
+import 'package:ticket_booking_app/providers/settings/language_notifier.dart';
 
 class CustomAwardCard extends StatelessWidget {
   const CustomAwardCard({

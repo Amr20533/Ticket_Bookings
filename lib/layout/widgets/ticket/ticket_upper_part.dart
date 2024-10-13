@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ticket_booking_app/constants.dart';
 import 'package:ticket_booking_app/core/class/app_layout.dart';
-import 'package:ticket_booking_app/layout/widgets/thick_container.dart';
+import 'package:ticket_booking_app/layout/widgets/flight/thick_container.dart';
 import 'package:ticket_booking_app/models/Flight/flight_model.dart';
 import 'package:ticket_booking_app/utils/helpers/tickets_formatter.dart';
 
-import '../../../providers/language_notifier.dart';
+import '../../../providers/settings/language_notifier.dart';
 
 
 class TicketUpperPart extends StatelessWidget {
@@ -20,7 +20,6 @@ class TicketUpperPart extends StatelessWidget {
   Widget build(BuildContext context) {
     final langNotifier = Provider.of<LanguageNotifier>(context);
     bool isRTL = langNotifier.locale.languageCode.toLowerCase() == 'ar';
-    debugPrint(FlightResponseModel.fromJson(outboundFlight).from!);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(context, 16)),
       child: Row(
