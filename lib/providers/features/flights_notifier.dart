@@ -12,12 +12,43 @@ class FlightsNotifier extends ChangeNotifier{
 
   List<dynamic> flightTickets = [];
 
+  List<String> seats = [
+    'one-way',
+    'round-trip',
+  ];
+
   String _paymentGateway = '';
 
   String get paymentGateway => _paymentGateway;
 
   set paymentGateway(String newGateway){
     _paymentGateway = newGateway;
+    notifyListeners();
+  }
+  String _flightId = '';
+
+  String get flightId => _flightId;
+
+  set flightId(String newId){
+    _flightId = newId;
+    notifyListeners();
+  }
+
+  String _selectedSeatClass = 'Economy';
+
+  String get selectedSeatClass => _selectedSeatClass;
+
+  set selectedSeatClass(String newPrice){
+    _selectedSeatClass = newPrice;
+    notifyListeners();
+  }
+
+  String _selectedSeat = '';
+
+  String get selectedSeat => _selectedSeat;
+
+  set selectedSeat(String newPrice){
+    _selectedSeat = newPrice;
     notifyListeners();
   }
 
@@ -54,4 +85,7 @@ class FlightsNotifier extends ChangeNotifier{
     return tickets;
   }
 
+  FlightsNotifier(){
+    getAllFlights();
+  }
 }

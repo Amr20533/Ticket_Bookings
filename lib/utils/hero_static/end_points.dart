@@ -1,6 +1,7 @@
 class AppEndPoints{
   // static const String server = 'http://10.0.2.2:3005';
   static const String server = 'https://booking-0xi6.onrender.com';
+  // static const String server = 'https://booking-0xi6.onrender.com';
 
   /// *********************** Authentication ***********************
   static const String userLogin = 'api/v1/users/login';

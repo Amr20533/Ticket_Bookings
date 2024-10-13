@@ -9,7 +9,7 @@ import 'package:ticket_booking_app/core/localization/app_localization.dart';
 import 'package:ticket_booking_app/layout/widgets/profile/edit_profile_page.dart';
 import 'package:ticket_booking_app/layout/widgets/settings/account_manager.dart';
 import 'package:ticket_booking_app/layout/widgets/settings/custom_settings_tile.dart';
-import 'package:ticket_booking_app/providers/language_notifier.dart';
+import 'package:ticket_booking_app/providers/settings/language_notifier.dart';
 import 'package:ticket_booking_app/providers/settings/profile_notifier.dart';
 import 'package:ticket_booking_app/utils/hero_static/custom_page_transition.dart';
 

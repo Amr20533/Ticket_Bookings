@@ -26,8 +26,11 @@ class AppRoutes{
   static const String tickets = '/tickets';
   static const String pass = '/password-settings';
   static const String account = '/account';
+  static const String successBooking = '/success-booking';
+  static const String failedBooking = '/failed-booking';
 
   static const String ticketsDetails = '/details-tickets';
+  static const String ticketCreate = '/ticket-create';
 
   static const String allHotels = '/all-hotels';
   static const String allTickets = '/all-tickets';

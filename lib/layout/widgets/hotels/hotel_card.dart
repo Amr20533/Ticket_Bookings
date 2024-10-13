@@ -27,8 +27,6 @@ class HotelCard extends StatelessWidget {
         Navigator.pushNamed(context, AppRoutes.hotelsDetails,
           arguments: hotels,
         );
-        // Navigator.push(context, MaterialPageRoute(builder: (context) => HotelsDetails(hotels: hotels)));
-
       },
       child: Container(
         width: width,

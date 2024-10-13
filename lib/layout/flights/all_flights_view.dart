@@ -3,10 +3,10 @@ import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:ticket_booking_app/core/class/app_layout.dart';
 import 'package:ticket_booking_app/core/localization/app_localization.dart';
-import 'package:ticket_booking_app/layout/widgets/custom_details_app_bar.dart';
-import 'package:ticket_booking_app/layout/widgets/ticket_box.dart';
+import 'package:ticket_booking_app/layout/widgets/common/custom_details_app_bar.dart';
+import 'package:ticket_booking_app/layout/widgets/flight/ticket_box.dart';
 import 'package:ticket_booking_app/modules/hotels.dart';
-import 'package:ticket_booking_app/providers/flights_notifier.dart';
+import 'package:ticket_booking_app/providers/features/flights_notifier.dart';
 
 class AllFlightsView extends StatelessWidget {
   const AllFlightsView({super.key});

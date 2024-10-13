@@ -1,4 +1,4 @@
-class FlightModel {
+class FlightResponseModel {
   Prices? prices;
   String? sId;
   String? plane;
@@ -11,7 +11,7 @@ class FlightModel {
   int? business;
   int? firstClass;
 
-  FlightModel(
+  FlightResponseModel(
       {this.prices,
         this.sId,
         this.plane,
@@ -24,7 +24,7 @@ class FlightModel {
         this.business,
         this.firstClass});
 
-  FlightModel.fromJson(Map<String, dynamic> json) {
+  FlightResponseModel.fromJson(Map<String, dynamic> json) {
     prices =
     json['prices'] != null ? Prices.fromJson(json['prices']) : null;
     sId = json['_id'];

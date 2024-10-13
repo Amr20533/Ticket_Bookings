@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ticket_booking_app/models/profile/profile_data.dart';
 import 'package:ticket_booking_app/models/profile/update_password.dart';
 import 'package:ticket_booking_app/models/profile/update_profile_model.dart';
 import 'package:ticket_booking_app/utils/hero_static/end_points.dart';
@@ -15,6 +16,8 @@ class ProfileNotifier extends ChangeNotifier{
   late TextEditingController phoneController;
   late TextEditingController dateOfBirthController;
   late TextEditingController confirmPasswordController;
+
+  Map<String, dynamic> myProfile = {};
 
   DateTime _selectedDate = DateTime.now();
 
@@ -112,21 +115,35 @@ class ProfileNotifier extends ChangeNotifier{
   }
 
 
-  Future<dynamic> getUserData() async {
+  Future<Map<String, dynamic>?> getUserData() async {
     String? token = DataService.sharedPreferences.getString('userToken');
+
+    if (token == null) {
+      debugPrint('User token is null. Cannot fetch user data.');
+      return null; // or return a default profile data
+    }
+
     try {
       var profileData = await helper.getMyData(
         endPoint: AppEndPoints.userGetProfileData,
-        token: token!,
+        token: token,
       );
-      debugPrint('${profileData}');
-      return profileData['data']['data'];
+
+      debugPrint('Profile data: $profileData');
+
+      if (profileData['data'] != null) {
+        myProfile = profileData['data']['data'];
+        return myProfile;
+      } else {
+        debugPrint('No profile data found in response.');
+        return null; // or handle accordingly
+      }
     } catch (e) {
-      print('Error fetching user data: $e');
-      // Handles error appropriately, maybe return a default ProfileDataModel or rethrow
-      return Future.error('Failed to fetch user data');
+      debugPrint('Error fetching user data: $e');
+      return Future.error('Failed to fetch user data: $e');
     }
   }
+
 
 
   void userLogout() async {
@@ -142,6 +159,7 @@ class ProfileNotifier extends ChangeNotifier{
 
 
   ProfileNotifier(){
+    getUserData();
     firstNameController = TextEditingController();
     lastNameController = TextEditingController();
     emailController = TextEditingController();

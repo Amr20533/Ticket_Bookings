@@ -7,7 +7,7 @@ import 'package:ticket_booking_app/core/const/routes.dart';
 import 'package:ticket_booking_app/core/localization/app_localization.dart';
 import 'package:ticket_booking_app/layout/widgets/sliders/hotel_slider.dart';
 import 'package:ticket_booking_app/layout/widgets/sliders/ticket_slider.dart';
-import 'package:ticket_booking_app/layout/widgets/view_all_bar.dart';
+import 'package:ticket_booking_app/layout/widgets/common/view_all_bar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

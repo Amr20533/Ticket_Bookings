@@ -7,11 +7,17 @@ import 'package:ticket_booking_app/utils/hero_static/end_points.dart';
 class DioHelper{
   final Dio _dio = Dio();
 
-  Future<List<dynamic>> getNoAuthData(String endPoint) async {
+  Future<List<dynamic>> authGetData({required String endPoint, required String token}) async {
     print('Fetching data from ${AppEndPoints.server}/$endPoint');
     try {
       final response = await _dio.get(
         '${AppEndPoints.server}/$endPoint',
+        options: Options(
+          contentType: 'application/json',
+          headers: {
+            'Authorization': 'Bearer $token',
+          },
+        ),
       );
       print('Response received: ${response.statusCode}');
       if (response.statusCode == 200 || response.statusCode == 201) {
@@ -180,13 +186,13 @@ class DioHelper{
       } else {
         print("No Data!");
         return response.data;
-    }
+      }
     } on DioException catch (dioError) {
       print('DioError: ${dioError.response?.data ?? dioError.message}');
-      return dioError.response?.data; // Return the error response
+      return dioError.response?.data;
     } catch (e) {
       print('Error: $e');
-      return e; // Return the error
+      return e;
     }
   }
 
