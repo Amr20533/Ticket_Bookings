@@ -125,6 +125,10 @@
   "start-desc": "It is a long established fact that a reader will be distracted by the readable content",
   "get-started": "Get Started",
   "skip": "Skip",
-  "next": "Next"
+  "next": "Next",
+  "confirmed-book": "Congratulations \nYour book has been confirmed",
+  "payment-received": "Payment Received \nSuccessfully",
+  "payment-failed": "Payment Failed!",
+  "book-failed": "Your booking could not be completed.\nPlease try again later or check your details."
 
 }

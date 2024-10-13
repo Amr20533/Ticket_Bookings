@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:ticket_booking_app/core/const/routes.dart';
-import 'package:ticket_booking_app/providers/hotels_notifier.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class PaymentView extends StatefulWidget {
-  const PaymentView({super.key});
+  final String url;
+
+  const PaymentView({super.key, required this.url});
 
   @override
-  State<PaymentView> createState() => _PaymentViewState();
+  PaymentViewState createState() => PaymentViewState();
 }
 
-class _PaymentViewState extends State<PaymentView> {
-  late final WebViewController _controller;
+class PaymentViewState extends State<PaymentView> {
+  late WebViewController _controller;
 
   @override
   void initState() {
     super.initState();
-    final HotelsNotifier hotelsNotifier = Provider.of<HotelsNotifier>(context, listen: false);
-
 
 
     late PlatformWebViewControllerCreationParams params = const PlatformWebViewControllerCreationParams();
@@ -59,16 +57,18 @@ class _PaymentViewState extends State<PaymentView> {
           },
 
           onUrlChange: (UrlChange change) {
-            if(change.url!.contains('acceptance')){
-              Navigator.pushReplacementNamed(context, AppRoutes.main);
-              HotelsNotifier().paymentGateway = '';
-            }else if(change.url!.contains('cancel')){
-              Navigator.pushReplacementNamed(context, AppRoutes.main);
-              HotelsNotifier().paymentGateway = '';
-
-              }
-            },
-              onHttpAuthRequest: (HttpAuthRequest request) {
+            if (change.url!.contains("Payment-successful")) {
+              debugPrint('Success URL: ${change.url}');
+              debugPrint('Success URL length: ${change.url!.length}');
+              Navigator.of(context).pushReplacementNamed(AppRoutes.successBooking);
+            }else if (change.url!.contains("Payment-failed")){
+              Navigator.of(context).pushReplacementNamed(AppRoutes.failedBooking);
+            }else{
+              debugPrint('Current URL length: ${change.url!.length}');
+            }
+          },
+          // debugPrint('Success Payment method --> ${change.url}');
+          onHttpAuthRequest: (HttpAuthRequest request) {
             // openDialog(request);
           },
         ),
@@ -81,8 +81,7 @@ class _PaymentViewState extends State<PaymentView> {
           );
         },
       )
-      ..loadRequest(Uri.parse(hotelsNotifier.paymentGateway));
-
+      ..loadRequest(Uri.parse(widget.url));
 
     _controller = controller;
   }

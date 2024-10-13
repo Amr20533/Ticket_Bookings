@@ -11,10 +11,11 @@ import 'package:ticket_booking_app/layout/widgets/hotels/custom_divider.dart';
 import 'package:ticket_booking_app/layout/widgets/hotels/custom_feature_tile.dart';
 import 'package:ticket_booking_app/layout/widgets/hotels/custom_photos_slider.dart';
 import 'package:ticket_booking_app/layout/widgets/hotels/price_and_date_selector.dart';
-import 'package:ticket_booking_app/layout/widgets/search/custom_button.dart';
+import 'package:ticket_booking_app/models/Hotels/hotel_response_model.dart';
 import 'package:ticket_booking_app/modules/hotels_features.dart';
 import 'package:ticket_booking_app/layout/payment/payment_view.dart';
 import 'package:ticket_booking_app/providers/hotels_notifier.dart';
+import 'package:ticket_booking_app/utils/data/features_list.dart';
 
 class HotelsDetails extends StatelessWidget {
   const HotelsDetails({required this.hotels,super.key});
@@ -24,26 +25,7 @@ class HotelsDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     final HotelsNotifier hotelsNotifier = Provider.of<HotelsNotifier>(context);
 
-    List<HotelsFeature> _features = [
-      HotelsFeature(icon: AppAssets.clean,
-        title: AppLocalizations.of(context).translate('e-cln'),
-        subTitle: AppLocalizations.of(context).translate('cln-des'),
-      ),
-      HotelsFeature(icon: AppAssets.location,
-        title: AppLocalizations.of(context).translate('grt-loc'),
-        subTitle: AppLocalizations.of(context).translate('loc-des'),
-      ),
-      HotelsFeature(icon: AppAssets.key,
-        title: AppLocalizations.of(context).translate('chk-exp'),
-        subTitle: AppLocalizations.of(context).translate('chk-exp-des'),
-      ),
-      HotelsFeature(icon: AppAssets.calendar,
-        title: AppLocalizations.of(context).translate('cnl'),
-        subTitle: '',
-      ),
-    ];
-
-    return hotelsNotifier.paymentGateway.isNotEmpty ? const PaymentView() : Scaffold(
+    return hotelsNotifier.paymentGateway.isNotEmpty ?  PaymentView(url: hotelsNotifier.paymentGateway,) : Scaffold(
       backgroundColor: kWhiteColor,
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -54,16 +36,16 @@ class HotelsDetails extends StatelessWidget {
               height: AppLayout.getHeight(context, 300),
               alignment: Alignment.topCenter,
               decoration: BoxDecoration(
-                image: const DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage(
-                    'assets/image/first.jpg',
+                  image: const DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage(
+                      'assets/image/first.jpg',
+                    ),
                   ),
-                ),
-                borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(AppLayout.getHeight(context, 26)),
-                  bottomLeft: Radius.circular(AppLayout.getHeight(context, 26)),
-                )
+                  borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(AppLayout.getHeight(context, 26)),
+                    bottomLeft: Radius.circular(AppLayout.getHeight(context, 26)),
+                  )
               ),
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: AppLayout.getHeight(context, 35)),
@@ -73,10 +55,12 @@ class HotelsDetails extends StatelessWidget {
                       icon: const Icon(Icons.arrow_back_ios_rounded, color: Colors.white,
                       ),
                     ),
-                    IconButton(onPressed: (){
-        
-                    },
-                    icon: const Icon(FluentSystemIcons.ic_fluent_heart_regular, color: Colors.white,),)
+                    IconButton(
+                      onPressed: (){
+
+                      },
+                      icon: const Icon(FluentSystemIcons.ic_fluent_heart_regular, color: Colors.white,),
+                    )
                   ],
                 ),
               ),
@@ -90,7 +74,7 @@ class HotelsDetails extends StatelessWidget {
                   ),
                   Gap(AppLayout.getWidth(context, 8)),
                   Text('5.0(120 Reviews)',style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.black, fontSize: 12, fontWeight: FontWeight.normal),),
-        
+
                 ],
               ),
             ),
@@ -98,7 +82,7 @@ class HotelsDetails extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(context, 18),),
               child: Text(hotels['address'],style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: Colors.black, fontSize: 24,fontWeight: FontWeight.bold),),
             ),
-        
+
             Padding(
               padding: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(context, 18),vertical: AppLayout.getHeight(context, 14),),
               child: Row(
@@ -140,17 +124,20 @@ class HotelsDetails extends StatelessWidget {
             ),
             const CustomPhotosSlider(),
             const CustomDivider(),
-            ...List.generate(_features.length, (index) => Column(
+            ...List.generate(features.length, (index) => Column(
               children: [
                 CustomFeatureTile(
-                  icon: _features[index].icon,
-                  title: _features[index].title,
-                  subTitle: _features[index].subTitle,
+                  icon: features[index].icon,
+                  title: AppLocalizations.of(context).translate(features[index].title),
+                  subTitle: AppLocalizations.of(context).translate(features[index].subTitle),
                 ),
                 const CustomDivider(),
               ],
             )),
-            PriceAndDateSelector(id: hotels['_id']),
+            PriceAndDateSelector(
+                room: Room.fromJson(hotels['room'][0]),
+                hotelId: hotels['_id'],
+            ),
 
 
           ],

@@ -32,15 +32,26 @@ class HotelSlider extends StatelessWidget {
             padding: isRTL ? const EdgeInsets.only(right: 16) : const EdgeInsets.only(left: 16),
             child: ListView.separated(
               itemCount: _hotels.length,
-              scrollDirection: Axis.horizontal,physics: const BouncingScrollPhysics(),
-              shrinkWrap: true,itemBuilder: (context, index)=> HotelCard(
-              width:_width * 0.5,
-              price: _hotels[index]['room'][index]['price'],
-              hotels: _hotels[index],
-              image: '${_hotels[4]['images'][0]}'
+              scrollDirection: Axis.horizontal,
+              physics: const BouncingScrollPhysics(),
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                // Ensure that the room list exists and has at least one item
+                final roomList = _hotels[index]['room'];
+                final price = (roomList.isNotEmpty) ? roomList[0]['price'] : 0;
+                final image = (_hotels[index]['images'].isNotEmpty) ? _hotels[index]['images'][0] : '';
+
+                return HotelCard(
+                  width: _width * 0.5,
+                  price: price,
+                  hotels: _hotels[index],
+                  image: image,
+                );
+              },
+              separatorBuilder: (context, _) => const Gap(20),
             ),
-              separatorBuilder: (context, _)=> const Gap(20),),
           );
+
         } else {
           return const Text('No data available');
         }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ticket_booking_app/constants.dart';
 import 'package:ticket_booking_app/core/class/app_layout.dart';
+import 'package:ticket_booking_app/core/const/routes.dart';
 import 'package:ticket_booking_app/core/localization/app_localization.dart';
 import 'package:ticket_booking_app/utils/hero_static/custom_page_transition.dart';
 import 'package:ticket_booking_app/layout/auth/forgot_password.dart';
@@ -208,13 +209,18 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
         email: loginNotifier.emailController.text,
         password: loginNotifier.passwordController.text
     );
+    // LoginModel loginModel = LoginModel(
+    //     email: 'ali.hassan@safwa.com',
+    //     password: 'test1234'
+    // );
     if (loginNotifier.formKey.currentState!.validate()) {
       loginNotifier.userLogin(loginModel).then((status) {
         if(status['status'] == 'success'){
+          debugPrint('Logged in');
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text('Logging in...')),
           );
-          Navigator.pop(context);
+          Navigator.pushReplacementNamed(context, AppRoutes.main);
         }else{
           debugPrint('Could not Login!!!');
         }

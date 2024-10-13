@@ -54,4 +54,7 @@ class FlightsNotifier extends ChangeNotifier{
     return tickets;
   }
 
+  FlightsNotifier(){
+    getAllFlights();
+  }
 }

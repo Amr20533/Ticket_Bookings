@@ -17,7 +17,7 @@ class AllHotelsView extends StatelessWidget {
     double _width = AppLayout.getSize(context).width;
     return Scaffold(
       appBar: customDetailsAppBar(context, title: AppLocalizations.of(context).translate('all-hls')),
-      body: FutureBuilder<List<dynamic>>(
+      body: FutureBuilder<dynamic>(
         future: HotelsNotifier().getHotelsData(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {

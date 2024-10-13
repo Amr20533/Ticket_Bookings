@@ -13,6 +13,8 @@ import 'package:ticket_booking_app/layout/hotels/all_hotels_view.dart';
 import 'package:ticket_booking_app/layout/hotels/all_photos.dart';
 import 'package:ticket_booking_app/layout/hotels/hotels_details.dart';
 import 'package:ticket_booking_app/layout/mainView.dart';
+import 'package:ticket_booking_app/layout/payment/payment_failed.dart';
+import 'package:ticket_booking_app/layout/payment/payment_success.dart';
 import 'package:ticket_booking_app/layout/search/search_view.dart';
 import 'package:ticket_booking_app/layout/settings/language_screen.dart';
 import 'package:ticket_booking_app/layout/settings/password_settings.dart';
@@ -52,6 +54,8 @@ Map<String, Widget Function(BuildContext)> pages = {
   AppRoutes.privacy : (context) => const PrivacyScreen(),
   AppRoutes.pass : (context) => const PasswordSettings(),
   AppRoutes.account : (context) => const AccountManager(),
+  AppRoutes.successBooking : (context) => const PaymentSuccess(),
+  AppRoutes.failedBooking : (context) => const PaymentFailed(),
 
   AppRoutes.allTickets : (context) => const AllFlightsView(),
   AppRoutes.ticketsDetails : (context) => const DetailsFlights(),

@@ -9,6 +9,7 @@ ThemeData get lightTheme {
       textTheme: const TextTheme(
         titleLarge: TextStyle(
           color: kLightThemeTextColor,
+          fontFamily: 'DMSerif',
           fontSize: 22,fontWeight:FontWeight.w600
         ),
         titleMedium: TextStyle(

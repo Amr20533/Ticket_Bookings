@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:ticket_booking_app/constants.dart';
 import 'package:ticket_booking_app/core/class/app_layout.dart';
 import 'package:ticket_booking_app/layout/widgets/thick_container.dart';
+import 'package:ticket_booking_app/models/Flight/flight_model.dart';
+import 'package:ticket_booking_app/utils/helpers/tickets_formatter.dart';
 
 import '../../../providers/language_notifier.dart';
 
@@ -10,17 +12,20 @@ import '../../../providers/language_notifier.dart';
 class TicketUpperPart extends StatelessWidget {
   const TicketUpperPart({
     super.key,
+    required this.outboundFlight,
   });
+  final dynamic outboundFlight;
 
   @override
   Widget build(BuildContext context) {
     final langNotifier = Provider.of<LanguageNotifier>(context);
     bool isRTL = langNotifier.locale.languageCode.toLowerCase() == 'ar';
+    debugPrint(FlightResponseModel.fromJson(outboundFlight).from!);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(context, 16)),
       child: Row(
         children: [
-          Text('NYC', style: Theme.of(context).textTheme.titleMedium),
+          Text(TicketsFormatter().getCityAbbreviation(FlightResponseModel.fromJson(outboundFlight).from!), style: Theme.of(context).textTheme.titleMedium),
           Expanded(child: Container()),
           const ThickContainer(color: kLightBlueColorColor,),
           Expanded(child: Stack(
@@ -44,7 +49,7 @@ class TicketUpperPart extends StatelessWidget {
           const ThickContainer(color: kLightBlueColorColor,),
           Expanded(child: Container()),
 
-          Text("LDN", style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.black, fontWeight: FontWeight.w600, fontSize: 16),),
+          Text(TicketsFormatter().getCityAbbreviation(FlightResponseModel.fromJson(outboundFlight).to!), style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.black, fontWeight: FontWeight.w600, fontSize: 16),),
 
         ],
       ),

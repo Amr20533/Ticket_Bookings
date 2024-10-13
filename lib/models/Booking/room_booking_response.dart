@@ -1,18 +1,18 @@
+import 'dart:convert';
+BookingRoomResponseModel bookingRoomResponseModelFromJson(String json) => BookingRoomResponseModel.fromJson(jsonDecode(json));
+
 class BookingRoomResponseModel {
   final String status;
-  final Data data;
   final String paymentGateway;
 
   BookingRoomResponseModel({
     required this.status,
-    required this.data,
     required this.paymentGateway,
   });
 
   factory BookingRoomResponseModel.fromJson(Map<String, dynamic> json) {
     return BookingRoomResponseModel(
       status: json['status'] as String,
-      data: Data.fromJson(json['data']),
       paymentGateway: json['paymentGateway'] as String? ?? '',
     );
   }
@@ -20,7 +20,6 @@ class BookingRoomResponseModel {
   Map<String, dynamic> toJson() {
     return {
       'status': status,
-      'data': data.toJson(),
       'paymentGateway': paymentGateway,
     };
   }
