@@ -37,21 +37,22 @@ class SubData {
   String? lastName;
   String? email;
   String? photo;
-  int? gender;
-  int? phoneNumber;
+  String? gender;
+  String? phoneNumber;
   int? iV;
   String? id;
 
-  SubData(
-      {this.sId,
-        this.firstName,
-        this.lastName,
-        this.email,
-        this.photo,
-        this.gender,
-        this.phoneNumber,
-        this.iV,
-        this.id});
+  SubData({
+    this.sId,
+    this.firstName,
+    this.lastName,
+    this.email,
+    this.photo,
+    this.gender,
+    this.phoneNumber,
+    this.iV,
+    this.id,
+  });
 
   SubData.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -60,7 +61,7 @@ class SubData {
     email = json['email'];
     photo = json['photo'];
     gender = json['gender'];
-    phoneNumber = json['phoneNumber'];
+    phoneNumber = json['phoneNumber'].toString();
     iV = json['__v'];
     id = json['id'];
   }

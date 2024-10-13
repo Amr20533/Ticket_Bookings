@@ -25,6 +25,8 @@ dependencies:
   shared_preferences:
   flutter_otp_text_field:
   webview_flutter:
+  lottie:
+  toastification:
 
 dev_dependencies:
   flutter_test:
@@ -42,6 +44,7 @@ flutter:
     - assets/lang/
     - assets/image/
     - assets/icons/
+    - assets/lottie/
 
   fonts:
     - family: DMSerif

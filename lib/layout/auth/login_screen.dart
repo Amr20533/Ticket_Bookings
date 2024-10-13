@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ticket_booking_app/constants.dart';
 import 'package:ticket_booking_app/core/class/app_layout.dart';
+import 'package:ticket_booking_app/core/const/routes.dart';
 import 'package:ticket_booking_app/core/localization/app_localization.dart';
+import 'package:ticket_booking_app/layout/widgets/common/show_custom_toast.dart';
+import 'package:ticket_booking_app/utils/helpers/request_message_helper.dart';
 import 'package:ticket_booking_app/utils/hero_static/custom_page_transition.dart';
 import 'package:ticket_booking_app/layout/auth/forgot_password.dart';
 import 'package:ticket_booking_app/layout/auth/register_screen.dart';
@@ -11,6 +14,8 @@ import 'package:ticket_booking_app/layout/widgets/auth/custom_text_button.dart';
 import 'package:ticket_booking_app/layout/widgets/search/custom_button.dart';
 import 'package:ticket_booking_app/models/auth/login_model.dart';
 import 'package:ticket_booking_app/providers/auth/login_notifier.dart';
+import 'package:ticket_booking_app/utils/hero_static/request_status.dart';
+import 'package:toastification/toastification.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -23,6 +28,8 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
   late AnimationController _animationController;
   late AnimationController _buttonAnimationController;
   late AnimationController _textAnimationController;
+  late AnimationController _fadeAnimationController;
+  late Animation<double> _fadeAnimation;
   late Animation<Offset> _animation;
   late Animation<Offset> _buttonAnimation;
   late Animation<Offset> _textAnimation;
@@ -40,6 +47,11 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
     );
 
     _textAnimationController = AnimationController(
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    );
+
+    _fadeAnimationController = AnimationController(
       duration: const Duration(seconds: 1),
       vsync: this,
     );
@@ -64,6 +76,15 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
         curve: Curves.easeInOut,
       ),
     );
+    _fadeAnimation = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(
+      CurvedAnimation(
+        parent: _fadeAnimationController,
+        curve: Curves.fastLinearToSlowEaseIn,
+      ),
+    );
 
     _textAnimation = Tween<Offset>(
       begin: const Offset(0, -1.0),
@@ -77,6 +98,7 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
     _animationController.forward();
     _buttonAnimationController.forward();
     _textAnimationController.forward();
+    _fadeAnimationController.forward();
   }
 
 
@@ -169,7 +191,8 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
                       position: _textAnimation,
                       child: CustomButton(
                         onPressed: (){
-                          _login(context,loginNotifier: login);
+
+                          _login(context,loginNotifier: login, opacity: _fadeAnimation);
                         },
                         width: AppLayout.getScreenWidth(context),
                         height: AppLayout.getHeight(context, 60),
@@ -203,25 +226,48 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
 
   ///ali.hassan@safwa.com
   /// test1234
-  void _login(BuildContext context, {required LoginNotifier loginNotifier}) {
+  void _login(BuildContext context, {required LoginNotifier loginNotifier, required Animation<double> opacity}) {
     LoginModel loginModel = LoginModel(
-        email: loginNotifier.emailController.text,
-        password: loginNotifier.passwordController.text
+      email: loginNotifier.emailController.text,
+      password: loginNotifier.passwordController.text,
     );
-    if (loginNotifier.formKey.currentState!.validate()) {
-      loginNotifier.userLogin(loginModel).then((status) {
-        if(status['status'] == 'success'){
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Logging in...')),
-          );
-          Navigator.pop(context);
-        }else{
-          debugPrint('Could not Login!!!');
-        }
-      });
 
-    }else{
-      debugPrint('Could not Login!!!');
+    if (loginNotifier.formKey.currentState!.validate()) {
+      loginNotifier.userLogin(loginModel).then((loginStatus) {
+        switch (loginStatus) {
+          case RequestStatus.SUCCESS:
+            debugPrint('Logged in');
+            showCustomToast(
+              context,
+              opacity: opacity,
+              title: "Login",
+              message: AppLocalizations.of(context).translate(RequestMessageHelper().getLoginMessage(RequestStatus.SUCCESS)),
+              status: RequestStatus.SUCCESS,
+            );
+            Navigator.pushReplacementNamed(context, AppRoutes.main);
+            break;
+          default:
+            showCustomToast(
+              context,
+              opacity: opacity,
+              title: "$loginStatus",
+              message: AppLocalizations.of(context).translate(RequestMessageHelper().getLoginMessage(loginStatus)),
+              status: loginStatus,
+            );
+            break;
+        }
+      }).catchError((error) {
+        debugPrint('An error occurred: $error');
+        showCustomToast(
+          context,
+          opacity: opacity,
+          title: "Error",
+          message: "An unexpected error occurred. Please try again.",
+          status: RequestStatus.FAILURE,
+        );
+      });
+    } else {
+      debugPrint('Form validation failed!!!');
     }
   }
   @override
@@ -231,7 +277,6 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
     _textAnimationController.dispose();
     super.dispose();
   }
-
 }
 
 

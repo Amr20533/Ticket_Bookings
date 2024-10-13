@@ -3,14 +3,14 @@ import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:ticket_booking_app/core/class/app_layout.dart';
 import 'package:ticket_booking_app/core/const/routes.dart';
-import 'package:ticket_booking_app/layout/widgets/ticket_box.dart';
+import 'package:ticket_booking_app/layout/widgets/flight/ticket_box.dart';
 import 'package:ticket_booking_app/modules/hotels.dart';
-import 'package:ticket_booking_app/providers/flights_notifier.dart';
-import 'package:ticket_booking_app/providers/home_provider.dart';
-import 'package:ticket_booking_app/providers/language_notifier.dart';
+import 'package:ticket_booking_app/providers/features/flights_notifier.dart';
+import 'package:ticket_booking_app/providers/features/home_provider.dart';
+import 'package:ticket_booking_app/providers/settings/language_notifier.dart';
 
 class TicketSlider extends StatelessWidget {
-  TicketSlider({super.key});
+  const TicketSlider({super.key});
   // final List _tickets = tickets;
   @override
   Widget build(BuildContext context) {

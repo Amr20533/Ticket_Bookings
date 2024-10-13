@@ -1,26 +1,25 @@
+import 'dart:convert';
+BookingRoomResponseModel bookingRoomResponseModelFromJson(String json) => BookingRoomResponseModel.fromJson(jsonDecode(json));
+
 class BookingRoomResponseModel {
   final String status;
-  final Data data;
   final String paymentGateway;
 
   BookingRoomResponseModel({
     required this.status,
-    required this.data,
     required this.paymentGateway,
   });
 
   factory BookingRoomResponseModel.fromJson(Map<String, dynamic> json) {
     return BookingRoomResponseModel(
       status: json['status'] as String,
-      data: Data.fromJson(json['data']),
-      paymentGateway: json['paymentGateway'] as String,
+      paymentGateway: json['paymentGateway'] as String? ?? '',
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'status': status,
-      'data': data.toJson(),
       'paymentGateway': paymentGateway,
     };
   }
@@ -36,7 +35,7 @@ class Data {
   final String endDate;
   final String id;
   final String createdAt;
-  final int orderId;
+  final String orderId;
   final int v;
 
   Data({
@@ -64,7 +63,7 @@ class Data {
       endDate: json['endDate'] as String,
       id: json['_id'] as String,
       createdAt: json['createdAt'] as String,
-      orderId: json['orderId'] as int,
+      orderId: json['orderId'],
       v: json['__v'] as int,
     );
   }

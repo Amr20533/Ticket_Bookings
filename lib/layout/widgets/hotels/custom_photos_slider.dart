@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ticket_booking_app/core/class/app_layout.dart';
-import 'package:ticket_booking_app/providers/language_notifier.dart';
+import 'package:ticket_booking_app/providers/settings/language_notifier.dart';
 
 class CustomPhotosSlider extends StatelessWidget {
   const CustomPhotosSlider({

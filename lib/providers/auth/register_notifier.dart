@@ -1,9 +1,10 @@
+import 'dart:async';
+import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:ticket_booking_app/models/auth/login_model.dart';
-import 'package:ticket_booking_app/models/auth/login_response_model.dart';
 import 'package:ticket_booking_app/models/auth/register_model.dart';
+import 'package:ticket_booking_app/models/auth/responses/register_response_model.dart';
 import 'package:ticket_booking_app/utils/hero_static/end_points.dart';
-import 'package:ticket_booking_app/utils/helpers/dataService.dart';
+import 'package:ticket_booking_app/utils/hero_static/request_status.dart';
 import 'package:ticket_booking_app/utils/remote/dio_helper.dart';
 
 class RegisterNotifier extends ChangeNotifier{
@@ -14,14 +15,15 @@ class RegisterNotifier extends ChangeNotifier{
   late TextEditingController emailController;
   late TextEditingController passwordController;
   late TextEditingController confirmPasswordController;
-  bool _isLoggedIn = false;
+  RequestStatus _requestStatus = RequestStatus.COOL;
 
-  bool get isLoggedIn => _isLoggedIn;
+  RequestStatus get requestStatus => _requestStatus;
 
-  set isLoggedIn(bool newStatus){
-    _isLoggedIn = newStatus;
+  set requestStatus(RequestStatus newStatus){
+    _requestStatus = newStatus;
     notifyListeners();
   }
+
 
   bool _isPassword = true;
 
@@ -32,36 +34,35 @@ class RegisterNotifier extends ChangeNotifier{
     notifyListeners();
   }
 
-  Future<dynamic> userLogin(LoginModel loginModel) async {
-    var loginData = await helper.noAuthPostData(AppEndPoints.userLogin,
-        body: loginModel.toJson()
-    );
-    LoginResponseModel loginResponse = LoginResponseModel.fromJson(loginData);
+  Future<RequestStatus> userRegister(RegisterModel registerModel) async {
+    requestStatus = RequestStatus.LOADING;
 
-    DataService.setData(key: 'isLoggedIn', value: true);
-    _isLoggedIn = DataService.sharedPreferences.getBool('isLoggedIn')!;
-    DataService.setData(key: 'userToken', value: loginResponse.token);
-    DataService.setData(key: 'userId', value: loginResponse.data.user!.sId!);
-    return loginData;
+    try {
+      var registerData = await helper.noAuthPostData(
+        AppEndPoints.userSignUp,
+        body: registerModel.toJson(),
+      );
+
+      RegisterResponseModel registerResponse = RegisterResponseModel.fromJson(registerData);
+
+      if (registerResponse.status == 'success') {
+
+        requestStatus = RequestStatus.SUCCESS;
+      } else {
+        requestStatus = RequestStatus.FAILURE;
+      }
+    } catch (e) {
+      if (e is TimeoutException) {
+        requestStatus = RequestStatus.TIMEOUT;
+      } else if (e is SocketException) {
+        requestStatus = RequestStatus.OFFLINE;
+      } else {
+        requestStatus = RequestStatus.INVALID_RESPONSE;
+      }
+    }
+
+    return requestStatus;
   }
-
-  Future<dynamic> userRegister(RegisterModel registerModel) async {
-    var registerData = await helper.noAuthPostData(AppEndPoints.userSignUp,
-        body: registerModel.toJson()
-    );
-    return registerData;
-  }
-
-
-  void userLogout() async {
-    _isLoggedIn = DataService.setData(key: 'isLoggedIn', value: false);
-    DataService.removeData(key: 'userToken');
-    DataService.removeData(key: 'userId');
-  }
-
-
-
-
 
 
   RegisterNotifier(){

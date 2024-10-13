@@ -2,21 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ticket_booking_app/core/class/app_layout.dart';
 import 'package:ticket_booking_app/core/localization/app_localization.dart';
+import 'package:ticket_booking_app/layout/hotels/build_hotel_bottom_sheet.dart';
 import 'package:ticket_booking_app/layout/widgets/search/custom_button.dart';
-import 'package:ticket_booking_app/models/Booking/room_booking_model.dart';
-import 'package:ticket_booking_app/layout/payment/payment_view.dart';
+import 'package:ticket_booking_app/models/Hotels/hotel_response_model.dart';
 import 'package:ticket_booking_app/providers/hotels_notifier.dart';
 
 class PriceAndDateSelector extends StatelessWidget {
   const PriceAndDateSelector({
-    required this.id,
+    required this.room,
+    required this.hotelId,
     super.key,
   });
-  final String id;
+  final Room room;
+  final String hotelId;
 
   @override
   Widget build(BuildContext context) {
-    final HotelsNotifier hotelsNotifier = Provider.of<HotelsNotifier>(context);
+    final hotelsNotifier = Provider.of<HotelsNotifier>(context);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(context, 18),vertical: AppLayout.getHeight(context, 14),),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -24,7 +26,7 @@ class PriceAndDateSelector extends StatelessWidget {
           RichText(
             text: TextSpan(
                 children:[
-                  TextSpan(text: '\$120',
+                  TextSpan(text: '\$${room.price}',
                     style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black, fontSize: 18,fontWeight: FontWeight.bold),
                   ),
                   TextSpan(text: '/${AppLocalizations.of(context).translate('ngt')}',
@@ -35,7 +37,8 @@ class PriceAndDateSelector extends StatelessWidget {
           ),
           CustomButton(
             onPressed: (){
-              _bookRoom(hotelsNotifier: hotelsNotifier);
+              buildHotelBottomSheet(context);
+              hotelsNotifier.hotelId = hotelId;
             },
             width: AppLayout.getWidth(context, 160),
             height: AppLayout.getHeight(context, 60),
@@ -46,24 +49,8 @@ class PriceAndDateSelector extends StatelessWidget {
         ],
       ),
     );
-  }
-  void _bookRoom({required HotelsNotifier hotelsNotifier}){
-    RoomBookingModel roomBookingModel = RoomBookingModel(
-      hotelId: id,
-      roomType: 'single',
-      startDate: '2024-11-24',
-      endDate: '2024-11-26',
-    );
-    hotelsNotifier.userBookARoom(roomBookingModel).then((roomStatus){
-      debugPrint("Status:: $roomStatus");
-      if(roomStatus['status'] == 'success'){
-        debugPrint('created a room success');
-        hotelsNotifier.paymentGateway = roomStatus['paymentGateway'];
 
-        print('Payment GateWay --> ${hotelsNotifier.paymentGateway}');
-      }else{
-        debugPrint('Error While Booking a room :(');
-      }
-    });
   }
+
 }
+

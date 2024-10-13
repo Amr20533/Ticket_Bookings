@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ticket_booking_app/core/class/app_layout.dart';
 import 'package:ticket_booking_app/core/localization/app_localization.dart';
-import 'package:ticket_booking_app/layout/widgets/custom_details_app_bar.dart';
-import 'package:ticket_booking_app/layout/widgets/hotel_card.dart';
+import 'package:ticket_booking_app/layout/widgets/common/custom_details_app_bar.dart';
+import 'package:ticket_booking_app/layout/widgets/hotels/hotel_card.dart';
 import 'package:ticket_booking_app/modules/hotels.dart';
 import 'package:ticket_booking_app/providers/hotels_notifier.dart';
+import 'package:ticket_booking_app/utils/hero_static/end_points.dart';
 
 
 class AllHotelsView extends StatelessWidget {
@@ -16,7 +17,7 @@ class AllHotelsView extends StatelessWidget {
     double _width = AppLayout.getSize(context).width;
     return Scaffold(
       appBar: customDetailsAppBar(context, title: AppLocalizations.of(context).translate('all-hls')),
-      body: FutureBuilder<List<dynamic>>(
+      body: FutureBuilder<dynamic>(
         future: HotelsNotifier().getHotelsData(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -33,7 +34,9 @@ class AllHotelsView extends StatelessWidget {
                     margin: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(context, 6), vertical: AppLayout.getHeight(context, 6)),
                     child: HotelCard(width:_width * 0.43,
                       price: _hotels[index]['room'][index]['price'],
-                      hotels: _hotels[index]
+                      hotels: _hotels[index],
+                        image: '${AppEndPoints.server}/${_hotels[3]['images'][0]}'
+
                     )),
                 ),
               ),
