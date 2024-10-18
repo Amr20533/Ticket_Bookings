@@ -15,7 +15,6 @@ import 'package:ticket_booking_app/layout/widgets/search/custom_button.dart';
 import 'package:ticket_booking_app/models/auth/login_model.dart';
 import 'package:ticket_booking_app/providers/auth/login_notifier.dart';
 import 'package:ticket_booking_app/utils/hero_static/request_status.dart';
-import 'package:toastification/toastification.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -224,8 +223,6 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
     );
   }
 
-  ///ali.hassan@safwa.com
-  /// test1234
   void _login(BuildContext context, {required LoginNotifier loginNotifier, required Animation<double> opacity}) {
     LoginModel loginModel = LoginModel(
       email: loginNotifier.emailController.text,
@@ -275,6 +272,7 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
     _animationController.dispose();
     _buttonAnimationController.dispose();
     _textAnimationController.dispose();
+    _fadeAnimationController.dispose();
     super.dispose();
   }
 }

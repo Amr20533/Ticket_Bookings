@@ -20,15 +20,17 @@ class SearchNotifier extends ChangeNotifier{
 
 
   Future<List<dynamic>> searchForHotels() async {
-    var response = await helper.userGetData(
+    if (searchFlightsController.text.isNotEmpty) {
+      var response = await helper.userGetData(
         endPoint: '${AppEndPoints.getAllHotels}?hotelName=${searchFlightsController.text}',
-        token: DataService.sharedPreferences.getString('userToken')!
-    );
-    print(response);
+        token: DataService.sharedPreferences.getString('userToken')!,
+      );
+      debugPrint(response);
 
-
-    var hotelResponse = HotelResponseModel.fromJson(response);
-    return hotelResponse.data.hotels;
+      var hotelResponse = HotelResponseModel.fromJson(response);
+      return hotelResponse.data.hotels;
+    }
+    return [];
   }
 
   // Future<List<Hotel>> searchForHotels() async {

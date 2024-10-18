@@ -9,6 +9,7 @@ class AppAssets{
   static const String image_2 = '$imagesPath/image_1.jpg';
   static const String image_3 = '$imagesPath/image_2.jpg';
   static const String image_4 = '$imagesPath/image_3.jpg';
+  static const String placeholder = '$imagesPath/placeholder.jpeg';
 
   static const String key = '$iconsPath/key.svg';
   static const String clean = '$iconsPath/clean.svg';

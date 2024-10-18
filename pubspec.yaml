@@ -27,6 +27,8 @@ dependencies:
   webview_flutter:
   lottie:
   toastification:
+  flutter_local_notifications:
+  permission_handler:
 
 dev_dependencies:
   flutter_test:

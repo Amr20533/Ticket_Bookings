@@ -76,13 +76,13 @@ class HomePage extends StatelessWidget {
           Navigator.pushNamed(context, AppRoutes.allTickets);
 
         },title: AppLocalizations.of(context).translate('flights'),),
-        TicketSlider(),
+        const TicketSlider(),
         Gap(AppLayout.getHeight(context, 16)),
         ViewAllBar(onTap: (){
           Navigator.pushNamed(context, AppRoutes.allHotels);
         },title: AppLocalizations.of(context).translate('hls'),),
         Gap(AppLayout.getHeight(context, 16)),
-        HotelSlider(),
+        const HotelSlider(),
 
 
 

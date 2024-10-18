@@ -18,10 +18,14 @@ class AppEndPoints{
   static const String bookHotelRoom = 'api/v1/booking';
   static const String getAllHotels = 'api/v1/hotels';
   static const String getHotelById = 'api/v1/hotels';
+  static const String addHotelToFavorite = 'api/v1/users/favorites/add-hotel-to-favorites';
+  static const String removeHotelFromFavorite = 'api/v1/users/favorites/add-hotel-to-favorites';
 
   /// *********************** Flights ***********************
   static const String getAllFlights = 'api/v1/flight';
   static const String createFlight = 'api/v1/flight';
+  static const String addReview = 'api/v1/reviewFlight';
+  static const String getAllReview = 'api/v1/reviewFlight';
 
 
   /// *********************** Tickets ***********************

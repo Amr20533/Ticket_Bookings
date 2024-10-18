@@ -2,19 +2,8 @@ import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
-import 'package:ticket_booking_app/constants.dart';
-import 'package:ticket_booking_app/core/class/app_layout.dart';
-import 'package:ticket_booking_app/core/const/routes.dart';
-import 'package:ticket_booking_app/core/localization/app_localization.dart';
-import 'package:ticket_booking_app/layout/widgets/profile/edit_profile_page.dart';
-import 'package:ticket_booking_app/layout/widgets/settings/account_manager.dart';
-import 'package:ticket_booking_app/layout/widgets/settings/custom_settings_tile.dart';
-import 'package:ticket_booking_app/providers/settings/language_notifier.dart';
-import 'package:ticket_booking_app/providers/settings/profile_notifier.dart';
-import 'package:ticket_booking_app/utils/hero_static/custom_page_transition.dart';
-import 'package:ticket_booking_app/utils/hero_static/end_points.dart';
+import 'package:ticket_booking_app/layout/settings/account/profile_exports.dart';
 
-import '../../../models/profile/profile_data.dart';
 
 class CustomProfileView extends StatelessWidget {
   const CustomProfileView({
@@ -139,7 +128,12 @@ class CustomProfileView extends StatelessWidget {
                 icon: FluentSystemIcons.ic_fluent_shield_regular,
               ),
               CustomSettingsTile(onTap:(){
-                profile.userLogout();
+                try{
+                  profile.userLogout();
+                  Navigator.restorablePopAndPushNamed(context, AppRoutes.authDirector);
+                }catch(error){
+                  debugPrint("Failed to Logout");
+                }
               },
                 title: AppLocalizations.of(context).translate("log-out"),
                 icon: FluentSystemIcons.ic_fluent_sign_out_regular,
@@ -152,3 +146,13 @@ class CustomProfileView extends StatelessWidget {
   );
   }
 }
+/*
+DioError: {status: fail, message: The seat you want is not available for this flight, error: {statusCode: 400, status: fail, isOperational: true}}
+E/flutter (14639): [ERROR:flutter/runtime/dart_vm_initializer.cc(41)] Unhandled Exception: Exception: An unexpected error occurred: Exception: The seat you want is not available for this flight
+E/flutter (14639): #0      FlightsNotifier.userTakeFlightTicket (package:ticket_booking_app/providers/features/flights_notifier.dart:96:9)
+E/flutter (14639): <asynchronous suspension>
+E/flutter (14639): #1      CreateTicketPage._payForTicket.<anonymous closure> (package:ticket_booking_app/layout/flights/create_ticket_page.dart:49:60)
+E/flutter (14639): <asynchronous suspension>
+E/flutter (14639):
+
+* */

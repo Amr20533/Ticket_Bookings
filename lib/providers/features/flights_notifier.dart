@@ -4,6 +4,7 @@ import 'package:ticket_booking_app/models/tickets/ticket_model.dart';
 import 'package:ticket_booking_app/models/tickets/tickets_booking_response_model.dart';
 import 'package:ticket_booking_app/utils/helpers/dataService.dart';
 import 'package:ticket_booking_app/utils/hero_static/end_points.dart';
+import 'package:ticket_booking_app/utils/hero_static/request_status.dart';
 import 'package:ticket_booking_app/utils/remote/dio_helper.dart';
 
 class FlightsNotifier extends ChangeNotifier{
@@ -12,11 +13,19 @@ class FlightsNotifier extends ChangeNotifier{
   List<dynamic> flights = [];
 
   List<dynamic> flightTickets = [];
+  RequestStatus _status = RequestStatus.COOL;
 
   List<String> seats = [
     'one-way',
     'round-trip',
   ];
+
+  RequestStatus get status => _status;
+
+  set status(RequestStatus newStatus){
+    _status = newStatus;
+    notifyListeners();
+  }
 
   String _paymentGateway = '';
 
@@ -32,6 +41,15 @@ class FlightsNotifier extends ChangeNotifier{
 
   set flightId(String newId){
     _flightId = newId;
+    notifyListeners();
+  }
+
+  String _errorMessage = '';
+
+  String get errorMessage => _errorMessage;
+
+  set errorMessage(String error){
+    _errorMessage = error;
     notifyListeners();
   }
 
@@ -76,6 +94,7 @@ class FlightsNotifier extends ChangeNotifier{
   }
 
   Future<TicketsBookingResponseModel> userTakeFlightTicket(TicketModel ticketModel) async {
+    _status = RequestStatus.LOADING;
     try {
       var ticketResponseData = await helper.postData(
         AppEndPoints.createFlightTicket,
@@ -84,19 +103,27 @@ class FlightsNotifier extends ChangeNotifier{
       );
 
       if (ticketResponseData['status'] == 'fail') {
+        _status = RequestStatus.FAILURE;
+        errorMessage = ticketResponseData['message'];
         throw Exception(ticketResponseData['message']);
       }
 
       return TicketsBookingResponseModel.fromJson(ticketResponseData);
     } catch (e) {
-      if (e is DioError) {
+      _status = RequestStatus.EXCEPTION;
+      if (e is DioException) {
+        final _errorDataMessage = e.response?.data['message'] ?? 'An unknown error occurred';
         debugPrint('DioError: ${e.response?.data}');
-        throw Exception('Network error: ${e.message}');
+        errorMessage = _errorDataMessage;
+
+        throw Exception(_errorDataMessage);
       } else {
-        throw Exception('An unexpected error occurred: $e');
+        errorMessage = 'An unexpected error occurred: $e';
+        throw Exception(errorMessage);
       }
     }
   }
+
 
   FlightsNotifier(){
     getAllFlights();

@@ -120,7 +120,7 @@ class ProfileNotifier extends ChangeNotifier{
 
     if (token == null) {
       debugPrint('User token is null. Cannot fetch user data.');
-      return null; // or return a default profile data
+      return null;
     }
 
     try {
@@ -137,7 +137,7 @@ class ProfileNotifier extends ChangeNotifier{
         return myProfile;
       } else {
         debugPrint('No profile data found in response.');
-        return null; // or handle accordingly
+        return null;
       }
     } catch (e) {
       debugPrint('Error fetching user data: $e');

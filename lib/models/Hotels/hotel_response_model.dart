@@ -51,16 +51,16 @@ class Hotel {
   });
 
   factory Hotel.fromJson(Map<String, dynamic> json) {
-    var roomList = json['room'] as List;
+    var roomList = json['rooms'] as List? ?? [];
     List<Room> rooms = roomList.map((i) => Room.fromJson(i)).toList();
 
     return Hotel(
-      id: json['_id'] as String,
-      hotelName: json['hotelName'] as String,
-      images: List<String>.from(json['images']),
-      country: json['country'] as String,
-      address: json['address'] as String,
-      description: json['description'] as String,
+      id: json['_id'] as String? ?? '',
+      hotelName: json['hotelName'] as String? ?? '',
+      images: List<String>.from(json['images'] ?? []),
+      country: json['country'] as String? ?? '',
+      address: json['address'] as String? ?? '',
+      description: json['description'] as String? ?? '',
       rooms: rooms,
     );
   }

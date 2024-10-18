@@ -2,6 +2,7 @@ const cityAbbreviations = {
   'New York': 'NYC',
   'London': 'LDN',
   'Los Angeles': 'LA',
+  'Florida': 'FL',
   'Tokyo': 'TKY',
   'Paris': 'PAR',
   'Berlin': 'BER',

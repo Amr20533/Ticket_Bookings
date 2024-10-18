@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ticket_booking_app/models/Hotels/hotel_response_model.dart';
 import 'package:ticket_booking_app/utils/hero_static/page_exports.dart';
 
 
@@ -46,8 +47,8 @@ Map<String, Widget Function(BuildContext)> pages = {
   AppRoutes.allHotels : (context) => AllHotelsView(),
   AppRoutes.allPhotos : (context) => const AllPhotosView(),
   AppRoutes.hotelsDetails : (context) {
-    final Object hotels = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
-    return HotelsDetails(hotels: hotels);
+    final Object? hotel = ModalRoute.of(context)!.settings.arguments;
+    return HotelsDetails(hotel: hotel);
   }
 
 

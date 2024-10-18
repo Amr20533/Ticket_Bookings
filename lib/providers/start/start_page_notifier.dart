@@ -19,7 +19,6 @@ class StartPageNotifier extends ChangeNotifier{
     AppAssets.image_1,
     AppAssets.image_2,
     AppAssets.image_4,
-    // AppAssets.image_3,
   ];
 
   List<Widget> bottomSheetScreens = const [

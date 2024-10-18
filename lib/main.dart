@@ -3,19 +3,23 @@ import 'package:provider/provider.dart';
 import 'package:ticket_booking_app/providers/auth/forgot_password_notifier.dart';
 import 'package:ticket_booking_app/providers/auth/login_notifier.dart';
 import 'package:ticket_booking_app/providers/auth/register_notifier.dart';
+import 'package:ticket_booking_app/providers/features/favorites_notifier.dart';
 import 'package:ticket_booking_app/providers/features/flights_notifier.dart';
 import 'package:ticket_booking_app/providers/features/home_provider.dart';
+import 'package:ticket_booking_app/providers/features/reviews_notifier.dart';
 import 'package:ticket_booking_app/providers/hotels_notifier.dart';
 import 'package:ticket_booking_app/providers/settings/language_notifier.dart';
 import 'package:ticket_booking_app/providers/search/search_notifier.dart';
 import 'package:ticket_booking_app/providers/settings/profile_notifier.dart';
 import 'package:ticket_booking_app/providers/start/start_page_notifier.dart';
 import 'package:ticket_booking_app/utils/helpers/dataService.dart';
+import 'package:ticket_booking_app/utils/helpers/notification_Helper.dart';
 import 'package:ticket_booking_app/utils/hero_static/pages.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await DataService.init();
+  await NotificationHelper().init();
 
   runApp(
     MultiProvider(
@@ -25,6 +29,8 @@ void main() async{
         ChangeNotifierProvider(create: (context) => HotelsNotifier()),
         ChangeNotifierProvider(create: (context) => LanguageNotifier()),
         ChangeNotifierProvider(create: (context) => FlightsNotifier()),
+        ChangeNotifierProvider(create: (context) => ReviewNotifier()),
+        ChangeNotifierProvider(create: (context) => FavoritesNotifier()),
         ChangeNotifierProvider(create: (context) => LoginNotifier()),
         ChangeNotifierProvider(create: (context) => RegisterNotifier()),
         ChangeNotifierProvider(create: (context) => ForgotPasswordNotifier()),
@@ -50,7 +56,6 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: langNotifier.delegates,
       supportedLocales: langNotifier.locales,
       theme: langNotifier.currentTheme,
-      // home: const MainView(),
       routes: pages,
     );
   }

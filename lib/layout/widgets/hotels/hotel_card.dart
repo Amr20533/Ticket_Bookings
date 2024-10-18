@@ -3,17 +3,18 @@ import 'package:gap/gap.dart';
 import 'package:ticket_booking_app/constants.dart';
 import 'package:ticket_booking_app/core/class/app_layout.dart';
 import 'package:ticket_booking_app/core/const/routes.dart';
+import 'package:ticket_booking_app/models/Hotels/hotel_response_model.dart';
 import 'package:ticket_booking_app/utils/hero_static/end_points.dart';
 
 class HotelCard extends StatelessWidget {
   const HotelCard({
     required this.price,
-    required this.hotels,
+    required this.hotel,
     required this.width,
     required this.image,
     super.key,
   });
-  final dynamic hotels;
+  final Hotel hotel;
   final double width;
   final int price;
   final String image;
@@ -25,7 +26,7 @@ class HotelCard extends StatelessWidget {
     return GestureDetector(
       onTap: (){
         Navigator.pushNamed(context, AppRoutes.hotelsDetails,
-          arguments: hotels,
+          arguments: hotel,
         );
       },
       child: Container(
@@ -53,9 +54,9 @@ class HotelCard extends StatelessWidget {
               ),
             ),
             const Gap(10),
-            Text(hotels['address'], style: kLargeHeading(context).copyWith(fontSize: 22),maxLines: 2, overflow: TextOverflow.ellipsis,),
+            Text(hotel.address, style: kLargeHeading(context).copyWith(fontSize: 22),maxLines: 2, overflow: TextOverflow.ellipsis,),
             const Gap(5),
-            Text(hotels['country'], style: kSmallText(context),),
+            Text(hotel.country, style: kSmallText(context),),
             const Gap(5),
             Text('\$$price/night', style: kLargeHeading(context),),
 

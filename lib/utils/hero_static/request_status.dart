@@ -3,6 +3,7 @@ enum RequestStatus {
   LOADING,
   SUCCESS,
   FAILURE,
+  EXCEPTION,
   OFFLINE,
   PENDING,
   CANCELLED,
